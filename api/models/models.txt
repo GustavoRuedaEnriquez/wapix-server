@@ -1,0 +1,1 @@
+aquí van los models/schemas. Ejemplo, si es el model es de users, nombrar al archivo como users.js

@@ -1,0 +1,1 @@
+aquí van las rutas, convención, nombrar al archivo como el modelo al que corresponden. Ejemplo, si son las rutas de users, nombrar al archivo como users.js
