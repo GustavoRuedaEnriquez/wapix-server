@@ -1,0 +1,28 @@
+'use strict'
+
+const mongoose = require('mongoose');
+
+let schema = mongoose.Schema({
+    name : {
+        type : String,
+        required : true
+    },
+    creator : {
+        type : String,
+        required : true
+    },
+    available : {
+        type : Boolean,
+        required : true
+    },
+    code : {
+        type : String,
+        required : true,
+    },
+    questions : {
+        type : Array,
+        default : []
+    }
+});
+
+module.exports = mongoose.model("Wapix", schema);
