@@ -1,1 +1,0 @@
-aquí van los controllers, convención, nombrar al archivo como el modelo al que corresponden. Ejemplo, si el controlador es de users, nombrar al archivo como users.js

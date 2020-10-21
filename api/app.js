@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 /* load routes */
-//const courseRoutes = require('./routes/courses');
+const userRoutes = require('./routes/user');
 
 /* use cors */
 app.use(cors());
@@ -17,6 +17,6 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 /* base routes */
-//app.use('/api',courseRoutes);
+app.use('/api',userRoutes);
 
 module.exports = app;

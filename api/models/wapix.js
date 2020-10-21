@@ -11,7 +11,15 @@ let schema = mongoose.Schema({
         type : String,
         required : true
     },
-    available : {
+    version : {
+        type : Number,
+        default : 1
+    },
+    lastUpdate : {
+        type : Date,
+        required : true
+    },
+    available: {
         type : Boolean,
         required : true
     },

@@ -1,0 +1,20 @@
+POST http://127.0.0.1:3003/api/user HTTP/1.1
+content-type: application/json
+
+{
+    "username" : "Gustavo Rueda",
+    "email" : "gare_98@hotmail.com",
+    "password" : "Holaguso22"
+}
+
+GET http://127.0.0.1:3003/api/user/gare_98@hotmail.com HTTP/1.1
+
+PATCH  http://127.0.0.1:3003/api/user/gare_98@hotmail.com HTTP/1.1
+content-type: application/json
+
+{
+    "username" : "Gustavo Adolfo Rueda",
+    "dummy" : "dummy"
+}
+
+DELETE http://127.0.0.1:3003/api/user/gare_98@hotmail.com HTTP/1.1
