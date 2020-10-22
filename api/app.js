@@ -3,11 +3,14 @@
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
+const handlebars = require('express-handlebars');
+
 
 const app = express();
 
 /* load routes */
 const userRoutes = require('./routes/user');
+const viewsRoutes = require('./routes/views');
 
 /* use cors */
 app.use(cors());
@@ -18,5 +21,11 @@ app.use(bodyParser.json());
 
 /* base routes */
 app.use('/api',userRoutes);
+app.use('/',viewsRoutes);
+
+/* handlebars */
+app.engine('handlebars', handlebars());
+app.set('view engine', 'handlebars');
+app.set('views', 'api/views');
 
 module.exports = app;

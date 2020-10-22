@@ -1,0 +1,9 @@
+{
+  "include": ["api/views/scripts/*.ts"],
+  "exclude": ["node_modules", "api/**/*.spec.ts"],
+  "compilerOptions": {
+    "target": "es6",
+    "moduleResolution": "node",
+    "outDir": "api/views/scripts"
+  }
+}
