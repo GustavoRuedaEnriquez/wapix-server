@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node ./api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "nodemon": "nodemon ./api/index.js"
+    "nodemon": "nodemon ./api/index.js",
+    "styles": "sass api/views/styles:api/assets/styles --no-source-map",
+    "scripts": "tsc"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,7 @@
     "mongoose": "^5.10.9"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "sass": "^1.27.0"
   }
 }
