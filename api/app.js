@@ -1,12 +1,16 @@
 'use strict'
 
 const cors = require('cors');
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const handlebars = require('express-handlebars');
 
 
 const app = express();
+
+/* css */
+app.use('/public', express.static(path.join(__dirname, 'assets')));
 
 /* load routes */
 const userRoutes = require('./routes/user');
