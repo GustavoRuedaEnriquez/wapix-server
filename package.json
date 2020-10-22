@@ -4,11 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./api/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "nodemon": "nodemon ./api/index.js",
+    "start": "npm run styles | node ./api/index.js",
+    "nodemon": "npm run styles:watch | nodemon ./api/index.js",
     "styles": "sass api/views/styles:api/assets/styles --no-source-map",
-    "scripts": "tsc"
+    "styles:watch": "sass api/views/styles:api/assets/styles --no-source-map --watch"
   },
   "repository": {
     "type": "git",
