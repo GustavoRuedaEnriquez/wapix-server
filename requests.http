@@ -1,3 +1,11 @@
+### Request tests
+
+### IMPORTANT: Please make sure to have installed the REST Client extension
+### for VS Code, the one created by Huachao Mao.
+
+### The Authorization token expires each day, if neccessary, run the login 
+### again to obtain a new one.
+
 POST http://127.0.0.1:3003/api/user HTTP/1.1
 content-type: application/json
 
@@ -7,9 +15,16 @@ content-type: application/json
     "password" : "Holaguso22"
 }
 
+##################################################
+
 GET http://127.0.0.1:3003/api/user/gare_98@hotmail.com HTTP/1.1
+Host: 127.0.0.1:3003
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjkwZDZiZTIxNjM1NzJiY2E4M2RlYmUiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDMzMjc3NDksImV4cCI6MTYwMzQxNDE0OX0.35L_LAQgzELs6LLQBKo1y53WJE_qF7cmY4Xz7TOn08U
+
+##################################################
 
 PATCH  http://127.0.0.1:3003/api/user/gare_98@hotmail.com HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjkwZDZiZTIxNjM1NzJiY2E4M2RlYmUiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDMzMjc3NDksImV4cCI6MTYwMzQxNDE0OX0.35L_LAQgzELs6LLQBKo1y53WJE_qF7cmY4Xz7TOn08U
 content-type: application/json
 
 {
@@ -17,4 +32,17 @@ content-type: application/json
     "dummy" : "dummy"
 }
 
+##################################################
+
 DELETE http://127.0.0.1:3003/api/user/gare_98@hotmail.com HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjkwZDZiZTIxNjM1NzJiY2E4M2RlYmUiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDMzMjc3NDksImV4cCI6MTYwMzQxNDE0OX0.35L_LAQgzELs6LLQBKo1y53WJE_qF7cmY4Xz7TOn08U
+
+##################################################
+
+POST http://127.0.0.1:3003/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "email" : "gare_98@hotmail.com",
+    "password" : "Holaguso22"
+}

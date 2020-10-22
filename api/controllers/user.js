@@ -1,5 +1,8 @@
 'use strict'
 
+const  moment = require('moment');
+const jwt = require('../utils/jwt');
+
 const User = require('../models/user');
 
 function createUser(req, res) {
@@ -98,9 +101,50 @@ function deleteUser(req, res) {
     });
 }
 
+function login(req, res) {
+    let body  = req.body;
+
+    let email = body.email;
+    let password = body.password;
+
+    let errorMessage = 'The following fields are required: '
+    let error = false;
+
+    if(email == undefined) {
+        error = true;
+        errorMessage += 'email '
+    }
+    if(password == undefined) {
+        error = true;
+        errorMessage += 'password '
+    }
+    if(error) {
+        res.status(400).send({ message : `${errorMessage}` });
+    } else {
+        User.findOne({ email : email },(err,user) => {
+            if(err){
+                res.status(500).send({ message : `${err}` });
+            } else {
+                if(!user){
+                    res.status(404).send({ message : 'User not found.' });
+                } else {
+                    if(password == user.password){
+                        let token = jwt.createToken(user);
+                        res.status(200).send({ message: 'Logged in', token : token, user : user});
+                    } else {
+                        res.status(403).send({ message: 'Invalid password' });
+                    }
+                }
+            }
+        });
+    }
+
+}
+
 module.exports = {
     createUser,
     readUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    login
 }
