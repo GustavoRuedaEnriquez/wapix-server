@@ -6,6 +6,8 @@
 ### The Authorization token expires each day, if neccessary, run the login 
 ### again to obtain a new one.
 
+# Create user
+##################################################
 POST http://127.0.0.1:3003/api/user HTTP/1.1
 content-type: application/json
 
@@ -17,12 +19,37 @@ content-type: application/json
 
 ##################################################
 
+
+
+
+# Login
+##################################################
+POST http://127.0.0.1:3003/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "email" : "gare_98@hotmail.com",
+    "password" : "Holaguso22"
+}
+
+##################################################
+
+
+
+
+# Read user
+##################################################
 GET http://127.0.0.1:3003/api/user/gare_98@hotmail.com HTTP/1.1
 Host: 127.0.0.1:3003
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjkwZDZiZTIxNjM1NzJiY2E4M2RlYmUiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDMzMjc3NDksImV4cCI6MTYwMzQxNDE0OX0.35L_LAQgzELs6LLQBKo1y53WJE_qF7cmY4Xz7TOn08U
 
 ##################################################
 
+
+
+
+# Update user
+##################################################
 PATCH  http://127.0.0.1:3003/api/user/gare_98@hotmail.com HTTP/1.1
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjkwZDZiZTIxNjM1NzJiY2E4M2RlYmUiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDMzMjc3NDksImV4cCI6MTYwMzQxNDE0OX0.35L_LAQgzELs6LLQBKo1y53WJE_qF7cmY4Xz7TOn08U
 content-type: application/json
@@ -34,15 +61,12 @@ content-type: application/json
 
 ##################################################
 
+
+
+
+# Delete user
+##################################################
 DELETE http://127.0.0.1:3003/api/user/gare_98@hotmail.com HTTP/1.1
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjkwZDZiZTIxNjM1NzJiY2E4M2RlYmUiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDMzMjc3NDksImV4cCI6MTYwMzQxNDE0OX0.35L_LAQgzELs6LLQBKo1y53WJE_qF7cmY4Xz7TOn08U
 
 ##################################################
-
-POST http://127.0.0.1:3003/api/login HTTP/1.1
-content-type: application/json
-
-{
-    "email" : "gare_98@hotmail.com",
-    "password" : "Holaguso22"
-}
