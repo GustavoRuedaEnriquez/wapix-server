@@ -1,0 +1,11 @@
+# Create Wapix
+##################################################
+POST http://127.0.0.1:3003/api/wapix HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "Examen 1",
+    "creator" : "gare_98@hotmail.com"
+}
+
+##################################################

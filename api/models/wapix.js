@@ -21,7 +21,8 @@ let schema = mongoose.Schema({
     },
     available: {
         type : Boolean,
-        required : true
+        required : true,
+        default : false
     },
     code : {
         type : String,
