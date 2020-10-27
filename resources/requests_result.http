@@ -1,0 +1,67 @@
+### Request tests
+
+### IMPORTANT: Please make sure to have installed the REST Client extension
+### for VS Code, the one created by Huachao Mao.
+
+### The Authorization token expires each day, if neccessary, run the login 
+### again to obtain a new one.
+
+# Create Result
+##################################################
+POST http://127.0.0.1:3003/api/result HTTP/1.1
+content-type: application/json
+
+{
+    "wapixId" : "5f981b739dcea4007267d787"
+}
+
+##################################################
+
+
+
+
+# Read Result 
+##################################################
+GET http://127.0.0.1:3003/api/result/5f987687cb6d90838cfdffd9 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
+Host: 127.0.0.1:3003
+
+##################################################
+
+
+
+
+# Read results from wapixId
+##################################################
+GET http://127.0.0.1:3003/api/result/wapixId/5f981b739dcea4007267d787 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
+Host: 127.0.0.1:3003
+
+##################################################
+
+
+
+
+# Update wapix
+##################################################
+PATCH  http://127.0.0.1:3003/api/result/5f98777d04228b60a44e0f85 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
+content-type: application/json
+
+{
+    "result" : ["Esta es una prueba", 
+                "Segunda prueba"
+    ]    
+}
+
+##################################################
+
+
+
+
+# Delete wapix
+##################################################
+DELETE http://127.0.0.1:3003/api/result/5f9871f53090f33600f31752 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
+
+##################################################
