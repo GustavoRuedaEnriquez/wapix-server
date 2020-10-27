@@ -45,6 +45,68 @@ function createWapix(req, res) {
     }
 }
 
+function readWapix(req,res){
+    let wapixId = req.params._id;
+    Wapix.find({_id: wapixId},(err,wapix) => {
+        if(err){
+            res.status(500).send({ message: `${err}` });
+        }else{
+            if(Object.entries(wapix).length === 0){
+                res.status(404).send({ message : 'Wapix not found.' });
+            }else{
+                res.status(200).send({ message : 'Wapix obtained', wapix : wapix});
+            }
+        }
+    });
+}
+
+function updateWapix(req, res) {
+    let wapixId = req.params._id;
+    let body = req.body;
+    let update = {};
+
+    if(body.name != undefined) {
+        update.name = body.name;
+    }
+    if(body.version != undefined) {
+        update.version = body.version;
+    }
+    if(body.available != undefined) {
+        update.available = body.available;
+    }
+    if(body.questions != undefined) {
+        update.questions = body.questions;
+    }
+
+    update.lastUpdate = moment().toDate();
+
+    Wapix.findOneAndUpdate({ _id : wapixId }, update, { new : true, useFindAndModify : false}, (err,updatedWapix) =>{
+        if(err){
+            res.status(500).send({ message: `${err}` });
+        }else{
+            if(!updatedWapix){
+                res.status(404).send({ message : 'Could not update the wapix\'s data.' });
+            }else{
+                res.status(200).send({ message :'Wapix\'s data updated.', wapix : updatedWapix })
+            }
+        }
+    });
+}
+
+function deleteWapixById(req, res) {
+    let wapixId = req.params._id;
+    Wapix.deleteOne({ _id : wapixId}, (err) => {
+        if(err) {
+            res.status(500).send({ message: `${err}` });
+        } else {
+            res.status(200).send({ message : 'Wapix deleted.' });
+        }
+    });
+}
+
 module.exports = {
-    createWapix
+    createWapix,
+    readWapix,
+    updateWapix,
+    deleteWapixById
 }
