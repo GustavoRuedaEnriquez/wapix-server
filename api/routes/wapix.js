@@ -8,7 +8,7 @@ const WapixController = require('../controllers/wapix');
 
 let api = express.Router();
 
-api.post('/wapix', WapixController.createWapix);
+api.post('/wapix', mdAuth.ensureAuth, WapixController.createWapix);
 api.get('/wapix/:_id', mdAuth.ensureAuth, WapixController.readWapix);
 api.get('/wapix/creator/:email', mdAuth.ensureAuth, WapixController.readWapixesByEmail)
 api.patch('/wapix/:_id', mdAuth.ensureAuth, WapixController.updateWapix);

@@ -8,7 +8,7 @@ const ResultController = require('../controllers/result');
 
 let api = express.Router();
 
-api.post('/result', ResultController.createResult);
+api.post('/result', mdAuth.ensureAuth, ResultController.createResult);
 api.get('/result/:_id', mdAuth.ensureAuth, ResultController.readResult);
 api.get('/result/wapixId/:wapixId', mdAuth.ensureAuth, ResultController.readResultByWapixId)
 api.patch('/result/:_id', mdAuth.ensureAuth, ResultController.updateResult);
