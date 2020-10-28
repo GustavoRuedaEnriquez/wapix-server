@@ -14,6 +14,7 @@ app.use('/public', express.static(path.join(__dirname, 'assets')));
 
 /* load routes */
 const userRoutes = require('./routes/user');
+const wapixRoutes = require('./routes/wapix');
 const resultRoutes = require('./routes/result');
 const viewsRoutes = require('./routes/views');
 
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 
 /* base routes */
 app.use('/api',userRoutes);
+app.use('/api',wapixRoutes);
 app.use('/api',resultRoutes);
 app.use('/',viewsRoutes);
 
