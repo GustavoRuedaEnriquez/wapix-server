@@ -2,6 +2,24 @@
 
 const mongoose = require('mongoose');
 
+/**
+ * @swagger
+ * definitions:
+ *  Result:
+ *      type: object
+ *      required:
+ *          - wapixId
+ *          - date
+ *      properties:
+ *          wapixId:
+ *              type:string
+ *          date:
+ *              type:date
+ *          result:
+ *              type:array
+ *      xml:
+ *          name: User
+ */
 let schema = mongoose.Schema({
     wapixId : {
         type : String,

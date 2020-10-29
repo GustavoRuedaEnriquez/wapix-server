@@ -5,9 +5,33 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const handlebars = require('express-handlebars');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 
 
 const app = express();
+
+const swaggerOptions = {
+    swaggerDefinition: {
+        swagger: "2.0",
+        info: {
+            "title": "Wapix",
+            "description": "This is Wapix working with swagger.",
+            "termsOfService": "http://example.com/terms/",
+            "contact": {
+              "name": "Wapix Support"
+            },
+            "version": "1.0.0",
+            "servers": ["http://localhost:3003"]
+          },
+    },
+    apis: ['app.js', 'api/routes/user.js', 'api/routes/result.js', 'api/routes/wapix.js',
+     'api/models/result.js', 'api/models/user.js', 'api/models/wapix.js']
+}
+
+/* swagger */
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 /* css */
 app.use('/public', express.static(path.join(__dirname, 'assets')));

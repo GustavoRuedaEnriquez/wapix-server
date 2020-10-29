@@ -2,6 +2,35 @@
 
 const mongoose = require('mongoose');
 
+/**
+ * @swagger
+ * definitions:
+ *  Wapix:
+ *      type: object
+ *      required:
+ *          - name
+ *          - creator
+ *          - lastUpdate
+ *          - available
+ *          - code
+ *      properties:
+ *          name:
+ *              type:string
+ *          creator:
+ *              type:string
+ *          version:
+ *              type:number
+ *          lastUpdate:
+ *              type:date
+ *          available:
+ *              type:boolean
+ *          code:
+ *              type:string
+ *          questions:
+ *              type:array
+ *      xml:
+ *          name: User
+ */
 let schema = mongoose.Schema({
     name : {
         type : String,
