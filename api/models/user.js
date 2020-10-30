@@ -4,25 +4,26 @@ const mongoose = require('mongoose');
 
 /**
  * @swagger
+ *
  * definitions:
- *  User:
- *      type: object
- *      required:
- *          - username
- *          - email
- *          - password
- *      properties:
- *          username:
- *              type:string
- *          email:
- *              type:string
- *          password:
- *              type:string
- *          image:
- *              type:string
- *      xml:
- *          name: User
+ *   User:
+ *     type: object
+ *     required:
+ *       - username
+ *       - email
+ *       - password
+ *     properties:
+ *       username:
+ *         type: string
+ *       email:
+ *         type: string
+ *       password:
+ *         type: string
+ *         format: password
+ *       image:
+ *         type: string
  */
+
 let schema = mongoose.Schema({
     username : {
         type : String,

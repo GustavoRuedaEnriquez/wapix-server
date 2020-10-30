@@ -14,6 +14,7 @@ const app = express();
 const swaggerOptions = {
     swaggerDefinition: {
         swagger: "2.0",
+        components: {},
         info: {
             "title": "Wapix",
             "description": "This is Wapix working with swagger.",
@@ -25,8 +26,9 @@ const swaggerOptions = {
             "servers": ["http://localhost:3003"]
           },
     },
-    apis: ['app.js', 'api/routes/user.js', 'api/routes/result.js', 'api/routes/wapix.js',
-     'api/models/result.js', 'api/models/user.js', 'api/models/wapix.js']
+    apis: ['app.js', 'api/models/result.js', 'api/models/user.js', 'api/models/wapix.js',
+     'api/routes/user.js', 'api/routes/result.js', 'api/routes/wapix.js'
+     ]
 }
 
 /* swagger */
