@@ -1,9 +1,14 @@
 'use strict'
 
-const  moment = require('moment');
+const moment = require('moment');
+const bcrypt = require('bcrypt');
 const jwt = require('../utils/jwt');
 
 const User = require('../models/user');
+
+require('dotenv').config();
+
+let SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS);
 
 function createUser(req, res) {
     let user = new User();
@@ -32,6 +37,7 @@ function createUser(req, res) {
     if(error) {
         res.status(400).send({ message : `${errorMessage}` });
     } else {
+        user.password = bcrypt.hashSync(user.password, SALT_ROUNDS);
         user.save((err, storedUser) => {
             if(err){
                 res.status(500).send({ mesage :  `${err}` });
@@ -128,7 +134,7 @@ function login(req, res) {
                 if(!user){
                     res.status(404).send({ message : 'User not found.' });
                 } else {
-                    if(password == user.password){
+                    if(bcrypt.compareSync(password, user.password)){
                         let token = jwt.createToken(user);
                         res.status(200).send({ message: 'Logged in', token : token, user : user});
                     } else {
