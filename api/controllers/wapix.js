@@ -71,6 +71,23 @@ function readWapixesByEmail(req,res){
     });
 }
 
+function readWapixQuestion(req,res){
+    let wapixId = req.params['_id'];
+    let number = req.params['number'];
+    console.log('wapixId:', wapixId);
+    Wapix.find({_id: wapixId},(err,wapix) => {
+        if(err) {
+            res.status(500).send({ message: `${err}` });
+        } else {
+            if(Object.entries(wapix).length === 0) {
+                res.status(404).send({ message : 'Question not found.' });
+            } else {
+                res.status(200).send( { message : 'Question obtained', question : wapix[0].questions[number-1]});
+            }
+        }
+    });
+}
+
 function updateWapix(req, res) {
     let wapixId = req.params._id;
     let body = req.body;
@@ -119,6 +136,7 @@ module.exports = {
     createWapix,
     readWapix,
     readWapixesByEmail,
+    readWapixQuestion,
     updateWapix,
     deleteWapixById
 }

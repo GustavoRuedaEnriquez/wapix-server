@@ -41,7 +41,7 @@ content-type: application/json
 ##################################################
 GET http://127.0.0.1:3003/api/user/gare_98@hotmail.com HTTP/1.1
 Host: 127.0.0.1:3003
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZjkwZDZiZTIxNjM1NzJiY2E4M2RlYmUiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDMzMjc3NDksImV4cCI6MTYwMzQxNDE0OX0.35L_LAQgzELs6LLQBKo1y53WJE_qF7cmY4Xz7TOn08U
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0NjEyMTUsImV4cCI6MTYwNDU0NzYxNX0.BO7p9YcFiJ5k9CowIr_67lF2S06MtnezEMU5Eyol-lQ
 
 ##################################################
 

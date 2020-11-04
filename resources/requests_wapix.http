@@ -23,8 +23,8 @@ content-type: application/json
 
 # Read wapix
 ##################################################
-GET http://127.0.0.1:3003/api/wapix/5f981b739dcea4007267d787 HTTP/1.1
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
+GET http://127.0.0.1:3003/api/wapix/5fa0dd49770f0200ab852e25 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0NjEyMTUsImV4cCI6MTYwNDU0NzYxNX0.BO7p9YcFiJ5k9CowIr_67lF2S06MtnezEMU5Eyol-lQ
 Host: 127.0.0.1:3003
 
 ##################################################
@@ -35,7 +35,7 @@ Host: 127.0.0.1:3003
 # Read wapixes from author
 ##################################################
 GET http://127.0.0.1:3003/api/wapix/creator/gare_98@hotmail.com HTTP/1.1
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0NjEyMTUsImV4cCI6MTYwNDU0NzYxNX0.BO7p9YcFiJ5k9CowIr_67lF2S06MtnezEMU5Eyol-lQ
 Host: 127.0.0.1:3003
 
 ##################################################
@@ -62,5 +62,15 @@ content-type: application/json
 ##################################################
 DELETE http://127.0.0.1:3003/api/wapix/5f981d1fc8ebbe009f45f0f9 HTTP/1.1
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
+
+##################################################
+
+
+
+# Read question
+##################################################
+GET http://127.0.0.1:3003/api/wapix/5fa0dd49770f0200ab852e25/2 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0NjEyMTUsImV4cCI6MTYwNDU0NzYxNX0.BO7p9YcFiJ5k9CowIr_67lF2S06MtnezEMU5Eyol-lQ
+Host: 127.0.0.1:3003
 
 ##################################################

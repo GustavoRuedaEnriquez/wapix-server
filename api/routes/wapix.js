@@ -83,6 +83,8 @@ api.get('/wapix/:_id', mdAuth.ensureAuth, WapixController.readWapix);
  */
 api.get('/wapix/creator/:email', mdAuth.ensureAuth, WapixController.readWapixesByEmail)
 
+api.get('/wapix/:_id/:number', mdAuth.ensureAuth, WapixController.readWapixQuestion)
+
 /**
  * @swagger
  * /wapix/{id}:

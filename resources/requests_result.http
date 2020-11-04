@@ -10,9 +10,10 @@
 ##################################################
 POST http://127.0.0.1:3003/api/result HTTP/1.1
 content-type: application/json
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0Mjk5ODQsImV4cCI6MTYwNDUxNjM4NH0.xtWKk8aRUZJA-Z_SX-tbEcA3UaSydvd9wmqP3bCjPGk
 
 {
-    "wapixId" : "5f981b739dcea4007267d787"
+    "wapixId" : "5fa0dd49770f0200ab852e25"
 }
 
 ##################################################
@@ -22,8 +23,8 @@ content-type: application/json
 
 # Read Result 
 ##################################################
-GET http://127.0.0.1:3003/api/result/5f987687cb6d90838cfdffd9 HTTP/1.1
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
+GET http://127.0.0.1:3003/api/result/5fa1a8cd5a4e083c60c1ce58 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0Mjk5ODQsImV4cCI6MTYwNDUxNjM4NH0.xtWKk8aRUZJA-Z_SX-tbEcA3UaSydvd9wmqP3bCjPGk
 Host: 127.0.0.1:3003
 
 ##################################################
@@ -33,8 +34,8 @@ Host: 127.0.0.1:3003
 
 # Read results from wapixId
 ##################################################
-GET http://127.0.0.1:3003/api/result/wapixId/5f981b739dcea4007267d787 HTTP/1.1
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
+GET http://127.0.0.1:3003/api/result/wapixId/5fa0dd49770f0200ab852e25 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0Mjk5ODQsImV4cCI6MTYwNDUxNjM4NH0.xtWKk8aRUZJA-Z_SX-tbEcA3UaSydvd9wmqP3bCjPGk
 Host: 127.0.0.1:3003
 
 ##################################################
@@ -42,10 +43,10 @@ Host: 127.0.0.1:3003
 
 
 
-# Update wapix
+# Update from wapixId
 ##################################################
-PATCH  http://127.0.0.1:3003/api/result/5f98777d04228b60a44e0f85 HTTP/1.1
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
+PATCH  http://127.0.0.1:3003/api/result/5fa1a8cd5a4e083c60c1ce58 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0Mjk5ODQsImV4cCI6MTYwNDUxNjM4NH0.xtWKk8aRUZJA-Z_SX-tbEcA3UaSydvd9wmqP3bCjPGk
 content-type: application/json
 
 {
@@ -59,7 +60,7 @@ content-type: application/json
 
 
 
-# Delete wapix
+# Delete from wapixId
 ##################################################
 DELETE http://127.0.0.1:3003/api/result/5f9871f53090f33600f31752 HTTP/1.1
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
