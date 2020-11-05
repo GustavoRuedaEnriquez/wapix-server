@@ -72,27 +72,33 @@ function updateUser(req, res) {
     let body = req.body;
     let update = {};
 
-    if(body.username != undefined) {
+    if(body.username != undefined && body.username.trim() != '') {
         update.username = body.username;
     }
     if(body.password != undefined) {
-        update.password = body.password;
+        update.password = bcrypt.hashSync(body.password, SALT_ROUNDS);
     }
     if(body.image != undefined) {
         update.image = body.image;
     }
 
-    User.findOneAndUpdate({ email : userEmail }, update, { new : true, useFindAndModify : false}, (err,updatedUser) =>{
-        if(err){
-            res.status(500).send({ message: `${err}` });
-        }else{
-            if(!updatedUser){
-                res.status(404).send({ message : 'Could not update the user\'s data.' });
+    if(body.username.trim() != '') {
+        User.findOneAndUpdate({ email : userEmail }, update, { new : true, useFindAndModify : false}, (err,updatedUser) =>{
+            if(err){
+                res.status(500).send({ message: `${err}` });
             }else{
-                res.status(200).send({ message :'User\'s data updated.', user : updatedUser })
+                if(!updatedUser){
+                    res.status(404).send({ message : 'Could not update the user\'s data.' });
+                }else{
+                    res.status(200).send({ message :'User\'s data updated.', user : updatedUser })
+                }
             }
-        }
-    });
+        });
+    }  else {
+        res.status(404).send({ message : 'Could not update the user\'s data.' });
+    }
+
+    
 }
 
 function deleteUser(req, res) {
