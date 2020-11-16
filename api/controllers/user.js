@@ -168,9 +168,9 @@ function googleLogin(req, res) {
         User.find({email: googleEmail},(err,user) => {
             if(err){
                 res.status(500).send({ message: `${err}` });
-            }else{ //Create User
+            }else{ 
+                //Create User
                 if(Object.entries(user).length === 0){
-                    console.log('User does not exists, creating...');
                     let newUser =  
                         {   body: {
                                 'username': req.body.name,
@@ -180,11 +180,10 @@ function googleLogin(req, res) {
                                 'googleId': req.body.id
 
                             }};
-                    console.log('newUser', newUser);
                     createUser(newUser, res);
                 }else{
-                    if(!user[0].googleId) { //Exists but w/o Google ID
-                        console.log('Does not have google ID');
+                    //Exists but w/o Google ID
+                    if(!user[0].googleId) { 
                         let update =  
                         {   
                             params: {
@@ -195,10 +194,9 @@ function googleLogin(req, res) {
                                 'googleId': req.body.id
                                 }
                         };
-                        console.log('update', update);
                         updateUser(update, res);
-                    } else { //Exists and has Google ID
-                        console.log('Already has google ID');
+                    } else { 
+                        //Exists and has Google ID
                         let token = jwt.createToken(user[0]);
                         res.status(200).send({ message: 'Logged in', token : token, user : user});
                     }

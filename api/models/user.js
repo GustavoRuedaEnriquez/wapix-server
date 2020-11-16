@@ -22,6 +22,8 @@ const mongoose = require('mongoose');
  *         format: password
  *       image:
  *         type: string
+ *       googleId:
+ *         type: string
  */
 
 let schema = mongoose.Schema({

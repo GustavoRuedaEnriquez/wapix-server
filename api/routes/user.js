@@ -144,6 +144,37 @@ api.delete('/user/:email', mdAuth.ensureAuth, UserController.deleteUser);
  */
 api.post('/login', UserController.login)
 
+/**
+ * @swagger
+ * /googleLogin:
+ *  post:
+ *      tags:
+ *          - name: GoogleUser
+ *      summary: "Logs user into the system using Google Authentication"
+ *      description: Logs user into the system with its Google Email.
+ *      parameters:
+ *          - name: "email"
+ *            in: "query"
+ *            description: "email for login"
+ *            required: true
+ *            type: string 
+ *          - name: "password"
+ *            in: "query"
+ *            description: "paswword for login that comes from Google ID"
+ *            required: true
+ *            type: string 
+ *      responses:
+ *          200:
+ *              description: Login successfull.
+ *              schema:
+ *                  type: string
+ *          403:
+ *              description: Invalid password.
+ *          404:
+ *              description: User not found..
+ *          500:
+ *              description: Error.
+ */
 api.post('/googleLogin', UserController.googleLogin)
 
 module.exports = api;
