@@ -149,7 +149,7 @@ api.post('/login', UserController.login)
  * /googleLogin:
  *  post:
  *      tags:
- *          - name: GoogleUser
+ *          - name: User
  *      summary: "Logs user into the system using Google Authentication"
  *      description: Logs user into the system with its Google Email.
  *      parameters:
