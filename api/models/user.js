@@ -41,6 +41,9 @@ let schema = mongoose.Schema({
     image : {
         type : String,
         default : ""
+    },
+    googleId : {
+        type : String
     }
 });
 

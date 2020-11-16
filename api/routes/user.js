@@ -144,4 +144,6 @@ api.delete('/user/:email', mdAuth.ensureAuth, UserController.deleteUser);
  */
 api.post('/login', UserController.login)
 
+api.post('/googleLogin', UserController.googleLogin)
+
 module.exports = api;

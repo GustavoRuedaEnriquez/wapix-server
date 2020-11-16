@@ -3,6 +3,8 @@
 const moment = require('moment');
 const bcrypt = require('bcrypt');
 const jwt = require('../utils/jwt');
+const { OAuth2Client } = require('google-auth-library');
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const User = require('../models/user');
 
@@ -17,6 +19,7 @@ function createUser(req, res) {
     user.username = body.username;
     user.email = body.email;
     user.password = body.password;
+    user.googleId = body.googleId;
     user.image = (body.image != undefined) ? body.image : "";
 
     let errorMessage = 'The following fields are required: '
@@ -80,6 +83,9 @@ function updateUser(req, res) {
     }
     if(body.image != undefined) {
         update.image = body.image;
+    }
+    if(body.googleId != undefined) {
+        update.googleId = body.googleId;
     }
 
     if(body.username.trim() != '') {
@@ -153,10 +159,61 @@ function login(req, res) {
 
 }
 
+function googleLogin(req, res) {
+    googleClient.verifyIdToken({
+        idToken: req.body.idToken
+    }).then(googleResponse => {
+        const responseData = googleResponse.getPayload();
+        const googleEmail = responseData.email;
+        User.find({email: googleEmail},(err,user) => {
+            if(err){
+                res.status(500).send({ message: `${err}` });
+            }else{ //Create User
+                if(Object.entries(user).length === 0){
+                    console.log('User does not exists, creating...');
+                    let newUser =  
+                        {   body: {
+                                'username': req.body.name,
+                                'email': req.body.email,
+                                'password': req.body.id,
+                                'image': req.body.photoUrl,
+                                'googleId': req.body.id
+
+                            }};
+                    console.log('newUser', newUser);
+                    createUser(newUser, res);
+                }else{
+                    if(!user[0].googleId) { //Exists but w/o Google ID
+                        console.log('Does not have google ID');
+                        let update =  
+                        {   
+                            params: {
+                                'email': req.body.email
+                            },
+                            body: {
+                                'username': req.body.name,
+                                'googleId': req.body.id
+                                }
+                        };
+                        console.log('update', update);
+                        updateUser(update, res);
+                    } else { //Exists and has Google ID
+                        console.log('Already has google ID');
+                        let token = jwt.createToken(user[0]);
+                        res.status(200).send({ message: 'Logged in', token : token, user : user});
+                    }
+                }
+            }
+        });
+    }).catch(err => {res.status(400).send();});
+}
+
+
 module.exports = {
     createUser,
     readUser,
     updateUser,
     deleteUser,
-    login
+    login,
+    googleLogin
 }
