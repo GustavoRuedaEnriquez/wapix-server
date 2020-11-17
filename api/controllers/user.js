@@ -198,7 +198,7 @@ function googleLogin(req, res) {
                     } else { 
                         //Exists and has Google ID
                         let token = jwt.createToken(user[0]);
-                        res.status(200).send({ message: 'Logged in', token : token, user : user});
+                        res.status(200).send({ message: 'Logged in', token : token, user : user[0]});
                     }
                 }
             }
