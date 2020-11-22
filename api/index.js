@@ -31,14 +31,14 @@ mongoose.connect(process.env.MONGO_URI, {
             }
         });
     
-        io.on('connection', function(data) {
+        io.on('connection', socket => {
             console.log(`Client connected`);
+
+            socket.on('wapix-connect-player', (player) => {
+                console.log(`A player has joined: ${JSON.stringify(player)}`);
+            });
+
         });
-    
-        io.on('player-joined', function(data) {
-            console.log(`User connected to Wapix ${data.wapixId}: ${data.username}`);
-        });
-    
     })
     .catch(err => console.log(err));
 
