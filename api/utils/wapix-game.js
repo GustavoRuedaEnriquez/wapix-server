@@ -4,6 +4,7 @@ class WapixGame {
         this.date = Date();
         this.players = [];
         this.results = [];
+        this.question = {};
     }
 
     getWapixId() {
