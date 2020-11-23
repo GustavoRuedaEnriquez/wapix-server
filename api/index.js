@@ -19,7 +19,6 @@ mongoose.connect(process.env.MONGO_URI, {
     })
     .then(()=> {
         console.log("\n\n====> Connected to Mongo database!");
-        
         server = app.listen(PORT,()=>{
             console.log("====> Local Server created in http://127.0.0.1:" + PORT + "" +"\n\n");
         });
@@ -33,10 +32,8 @@ mongoose.connect(process.env.MONGO_URI, {
                 credentials : true
             }
         });
-    
         io.on('connection', socket => {
             console.log(`Client connected`);
-
             socket.on('wapix-connect-player', (player) => {
                 let newPlayer = temporalWapix.newPlayer(player.username, player.hostId);
                 temporalWapix.addPlayer(newPlayer);
@@ -44,15 +41,11 @@ mongoose.connect(process.env.MONGO_URI, {
                 console.log(`A player has joined: ${JSON.stringify(player)}\n\n`);
                 io.emit('send-name', player);
             });
-
             socket.on('wapix-start-game', (wapixId) => {
                 temporalWapix = new WapixGame(wapixId);
                 console.log(temporalWapix);
                 console.log(`A game wapix has been started: ${wapixId}\n\n`);
             });
-
-            
-
         });
     })
     .catch(err => console.log(err));
