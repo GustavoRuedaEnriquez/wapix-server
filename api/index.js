@@ -36,7 +36,10 @@ mongoose.connect(process.env.MONGO_URI, {
 
             socket.on('wapix-connect-player', (player) => {
                 console.log(`A player has joined: ${JSON.stringify(player)}`);
+                io.emit('send-name', player);
             });
+
+            
 
         });
     })
