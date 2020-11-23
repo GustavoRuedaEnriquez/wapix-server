@@ -3,11 +3,14 @@
 let app = require('./app');
 let mongoose = require('mongoose');
 let socketIO = require('socket.io');
+const { WapixGame } = require('./utils/wapixGame');
 
 require('dotenv').config();
 
 let server;
 let PORT = process.env.PORT || 3003;
+
+let temporalWapix = 'temporal';
 
 mongoose.connect(process.env.MONGO_URI, {
         useCreateIndex: true,
@@ -35,8 +38,17 @@ mongoose.connect(process.env.MONGO_URI, {
             console.log(`Client connected`);
 
             socket.on('wapix-connect-player', (player) => {
-                console.log(`A player has joined: ${JSON.stringify(player)}`);
+                let newPlayer = temporalWapix.newPlayer(player.username, player.hostId);
+                temporalWapix.addPlayer(newPlayer);
+                console.log(temporalWapix);
+                console.log(`A player has joined: ${JSON.stringify(player)}\n\n`);
                 io.emit('send-name', player);
+            });
+
+            socket.on('wapix-start-game', (wapixId) => {
+                temporalWapix = new WapixGame(wapixId);
+                console.log(temporalWapix);
+                console.log(`A game wapix has been started: ${wapixId}\n\n`);
             });
 
             

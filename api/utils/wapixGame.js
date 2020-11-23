@@ -1,6 +1,6 @@
 class WapixGame {
-    constructor() {
-        this.wapix = '';
+    constructor(wapix) {
+        this.wapix = wapix;
         this.date = Date();
         this.players = [];
         this.results = [];
@@ -37,9 +37,9 @@ class WapixGame {
 
     newPlayer(username, hostId) {
         let player = {
-            id = `${Date()}${Math.random() * 1000}`,
-            username = username,
-            hostId = hostId
+            id : `${new Date().getTime()}${Math.random() * 1000}`,
+            username : username,
+            hostId : hostId
         }
         return player;
     }
@@ -48,3 +48,5 @@ class WapixGame {
         this.players.push(player);
     }
 }
+
+module.exports = { WapixGame };
