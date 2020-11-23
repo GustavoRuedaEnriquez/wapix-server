@@ -85,6 +85,10 @@ api.get('/wapix/creator/:email', mdAuth.ensureAuth, WapixController.readWapixesB
 
 api.get('/wapix/:_id/:number', mdAuth.ensureAuth, WapixController.readWapixQuestion)
 
+api.patch('/wapix-activate/:_id', mdAuth.ensureAuth, WapixController.activateWapix)
+
+api.patch('/wapix-deactivate/:_id', mdAuth.ensureAuth, WapixController.deactivateWapix)
+
 api.get('/wapix-by-code/:code', WapixController.readWapixByCode)
 
 /**

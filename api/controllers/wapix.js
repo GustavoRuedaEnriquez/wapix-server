@@ -159,6 +159,40 @@ function deleteWapixById(req, res) {
     });
 }
 
+function activateWapix(req, res) {
+    let wapixId = req.params._id;
+    let update = { available : true };
+
+    Wapix.findOneAndUpdate({ _id : wapixId }, update, { new : true, useFindAndModify : false}, (err,updatedWapix) => {
+        if(err) {
+            res.status(500).send({ message : `${err}` });
+        }else {
+            if(!updatedWapix) {
+                res.status(404).send({ message : 'Could not activate the wapix to play.' });
+            } else {
+                res.status(200).send({ message :'Wapix is now available to play.' })
+            }
+        }
+    });
+}
+
+function deactivateWapix(req, res) {
+    let wapixId = req.params._id;
+    let update = { available : false };
+
+    Wapix.findOneAndUpdate({ _id : wapixId }, update, { new : true, useFindAndModify : false}, (err,updatedWapix) => {
+        if(err) {
+            res.status(500).send({ message : `${err}` });
+        }else {
+            if(!updatedWapix) {
+                res.status(404).send({ message : 'Could not deactivate the wapix to play.' });
+            } else {
+                res.status(200).send({ message :'Wapix is now not available to play.' })
+            }
+        }
+    });
+}
+
 module.exports = {
     createWapix,
     readWapix,
@@ -166,5 +200,7 @@ module.exports = {
     readWapixQuestion,
     readWapixByCode,
     updateWapix,
-    deleteWapixById
+    deleteWapixById,
+    activateWapix,
+    deactivateWapix
 }
