@@ -33,19 +33,20 @@ mongoose.connect(process.env.MONGO_URI, {
             }
         });
         io.on('connection', socket => {
-            console.log(`Client connected`);
-            socket.on('wapix-connect-player', (player) => {
-                let newPlayer = temporalWapix.newPlayer(player.username, player.hostId);
-                temporalWapix.addPlayer(newPlayer);
-                console.log(temporalWapix);
-                console.log(`A player has joined: ${JSON.stringify(player)}\n\n`);
-                io.emit('send-name', player);
-            });
+            console.log(`Socket connection with client established.`);
+
             socket.on('wapix-start-game', (wapixId) => {
-                temporalWapix = new WapixGame(wapixId);
-                console.log(temporalWapix);
+                socket.join(wapixId);
+                console.log(`Client has joined to room: ${wapixId}`);
                 console.log(`A game wapix has been started: ${wapixId}\n\n`);
             });
+
+            socket.on('wapix-connect-player', (player) => {
+                socket.join(player.hostId);
+                console.log(`A player has joined: ${player.username}\n\n`);
+                socket.to(player.hostId).emit('wapix-send-player', player);
+            });
+
         });
     })
     .catch(err => console.log(err));
