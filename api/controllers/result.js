@@ -12,6 +12,7 @@ function createResult(req, res) {
     result.wapixId = body.wapixId;
     result.date = moment().toDate();
     result.results = (body.results == undefined) ? [] :  body.results;
+    result.playersJoined = (body.playersJoined == undefined) ? [] :  body.playersJoined;
 
     let errorMessage = 'The following fields are required: '
     let error = false;
@@ -88,7 +89,6 @@ function updateResult(req, res) {
 
 function deleteResultById(req, res) {
     let resultId = req.params._id;
-    // TODO: Erase all Wapix and results linked to the result.
     Result.deleteOne({ _id : resultId}, (err) => {
         if(err) {
             res.status(500).send({ message: `${err}` });

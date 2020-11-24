@@ -32,6 +32,10 @@ let schema = mongoose.Schema({
     result : {
         type : Array,
         default : []
+    },
+    playersJoined : {
+        type : Array,
+        default : []
     }
 });
 
