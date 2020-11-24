@@ -11,7 +11,7 @@ function createResult(req, res) {
 
     result.wapixId = body.wapixId;
     result.date = moment().toDate();
-    result.results = (body.results == undefined) ? [] :  body.results;
+    result.result = (body.result == undefined) ? [] :  body.result;
     result.playersJoined = (body.playersJoined == undefined) ? [] :  body.playersJoined;
 
     let errorMessage = 'The following fields are required: '

@@ -10,10 +10,154 @@
 ##################################################
 POST http://127.0.0.1:3003/api/result HTTP/1.1
 content-type: application/json
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0Mjk5ODQsImV4cCI6MTYwNDUxNjM4NH0.xtWKk8aRUZJA-Z_SX-tbEcA3UaSydvd9wmqP3bCjPGk
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2RkOTNkYTg0MzkxNDQiLCJ1c2VybmFtZSI6Ikx1aXMgR2FsbGVnb3MiLCJlbWFpbCI6InN0b21wZXJjaXRvQGhvdG1haWwuY29tIiwiaWF0IjoxNjA2MjU1Mzg2LCJleHAiOjE2MDYzNDE3ODZ9.Xmf4h3Jgqe4a3tyGV54bD0EEiad828oh7mZh_vknpj0
 
 {
-    "wapixId" : "5fa0dd49770f0200ab852e25"
+    "wapixId" : "5fbacaa7e88cc93b08287b2e",
+    "result" : [
+        {
+            "question" :  {
+                "questionType" : 1,
+                "question" : {
+                    "text" : "¿cuánto es 2 + 2?"
+                },
+                "answerType" : 1,
+                "answers" : [
+                    {
+                        "text" : 4,
+                        "correct" : true
+                    },
+                    {
+                        "text" : 3,
+                        "correct" : false
+                    },
+                    {
+                        "text" : 2,
+                        "correct" : false               
+                    },
+                    {
+                        "text" : 1,
+                        "correct" : false
+                    }
+                ],
+                "gameMode" : "normal",
+                "availableTime" : 40,
+                "maxPoints" : 300
+            },
+            "submissions" : [
+                {
+                    "name" : "ArisCR7",
+                    "answer" : 4,
+                    "points" : 150
+                }, 
+                {
+                    "name" : "MrS",
+                    "answer" : 4,
+                    "points" : 220
+                },
+                {
+                    "name" : "Gus",
+                    "answer" : 1,
+                    "points" : 0
+                }
+            ]
+        },
+                {
+            "question" :  {
+                "questionType" : 1,
+                "question" : {
+                    "text" : "¿cuánto es 2 + 3?"
+                },
+                "answerType" : 1,
+                "answers" : [
+                    {
+                        "text" : 4,
+                        "correct" : true
+                    },
+                    {
+                        "text" : 5,
+                        "correct" : false
+                    },
+                    {
+                        "text" : 2,
+                        "correct" : false               
+                    },
+                    {
+                        "text" : 1,
+                        "correct" : false
+                    }
+                ],
+                "gameMode" : "normal",
+                "availableTime" : 40,
+                "maxPoints" : 300
+            },
+            "submissions" : [
+                {
+                    "name" : "ArisCR7",
+                    "answer" : 4,
+                    "points" : 0
+                }, 
+                {
+                    "name" : "MrS",
+                    "answer" : 5,
+                    "points" : 220
+                },
+                {
+                    "name" : "Gus",
+                    "answer" : 5,
+                    "points" : 260
+                }
+            ]
+        },
+                {
+            "question" :  {
+                "questionType" : 1,
+                "question" : {
+                    "text" : "¿cuánto es 2 - 2?"
+                },
+                "answerType" : 1,
+                "answers" : [
+                    {
+                        "text" : 4,
+                        "correct" : true
+                    },
+                    {
+                        "text" : 3,
+                        "correct" : false
+                    },
+                    {
+                        "text" : 2,
+                        "correct" : false               
+                    },
+                    {
+                        "text" : 0,
+                        "correct" : false
+                    }
+                ],
+                "gameMode" : "normal",
+                "availableTime" : 40,
+                "maxPoints" : 300
+            },
+            "submissions" : [
+                {
+                    "name" : "ArisCR7",
+                    "answer" : 0,
+                    "points" : 150
+                }, 
+                {
+                    "name" : "MrS",
+                    "answer" : 0,
+                    "points" : 220
+                },
+                {
+                    "name" : "Gus",
+                    "answer" : 0,
+                    "points" : 200
+                }
+            ]
+        }
+    ]
+
 }
 
 ##################################################
@@ -62,7 +206,7 @@ content-type: application/json
 
 # Delete from wapixId
 ##################################################
-DELETE http://127.0.0.1:3003/api/result/5f9871f53090f33600f31752 HTTP/1.1
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2MTAwMjg0ZGUyOTYiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gQWRvbGZvIFJ1ZWRhIiwiZW1haWwiOiJnYXJlXzk4QGhvdG1haWwuY29tIiwiaWF0IjoxNjAzODA0MDgzLCJleHAiOjE2MDM4OTA0ODN9.0kz9Ft-SOZL0BhxJzW4CebDZHgOoRVdhEUcGKGECD18
+DELETE http://127.0.0.1:3003/api/result/5fa0dd49770f0200ab852e25 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2RkOTNkYTg0MzkxNDQiLCJ1c2VybmFtZSI6Ikx1aXMgR2FsbGVnb3MiLCJlbWFpbCI6InN0b21wZXJjaXRvQGhvdG1haWwuY29tIiwiaWF0IjoxNjA2MjU1Mzg2LCJleHAiOjE2MDYzNDE3ODZ9.Xmf4h3Jgqe4a3tyGV54bD0EEiad828oh7mZh_vknpj0
 
 ##################################################
