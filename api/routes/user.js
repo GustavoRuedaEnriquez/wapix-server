@@ -10,7 +10,7 @@ let api = express.Router();
 
 /**
  * @swagger
- * /user:
+ * /api/user:
  *  post:
  *      tags:
  *          - name: User
@@ -37,7 +37,7 @@ api.post('/user', UserController.createUser);
 
 /**
  * @swagger
- * /user/{email}:
+ * /api/user/{email}:
  *  get:
  *      tags:
  *          - name: User
@@ -61,7 +61,7 @@ api.get('/user/:email', mdAuth.ensureAuth, UserController.readUser);
 
 /**
  * @swagger
- * /user/{email}:
+ * /api/user/{email}:
  *  patch:
  *      tags:
  *          - name: User
@@ -91,7 +91,7 @@ api.patch('/user/:email', mdAuth.ensureAuth, UserController.updateUser);
 
 /**
  * @swagger
- * /user/{email}:
+ * /api/user/{email}:
  *  delete:
  *      tags:
  *          - name: User
@@ -113,7 +113,7 @@ api.delete('/user/:email', mdAuth.ensureAuth, UserController.deleteUser);
 
 /**
  * @swagger
- * /login:
+ * /api/login:
  *  post:
  *      tags:
  *          - name: User
@@ -127,7 +127,7 @@ api.delete('/user/:email', mdAuth.ensureAuth, UserController.deleteUser);
  *            type: string 
  *          - name: "password"
  *            in: "query"
- *            description: "paswword for login in clear text"
+ *            description: "pasword for login in clear text"
  *            required: true
  *            type: string 
  *      responses:
@@ -146,7 +146,7 @@ api.post('/login', UserController.login)
 
 /**
  * @swagger
- * /googleLogin:
+ * /api/googleLogin:
  *  post:
  *      tags:
  *          - name: User
