@@ -62,7 +62,7 @@ Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2Rk
                 }
             ]
         },
-                {
+        {
             "question" :  {
                 "questionType" : 1,
                 "question" : {
@@ -109,7 +109,7 @@ Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2Rk
                 }
             ]
         },
-                {
+        {
             "question" :  {
                 "questionType" : 1,
                 "question" : {
@@ -155,6 +155,64 @@ Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2Rk
                     "points" : 200
                 }
             ]
+        },
+        {
+            "question" :  {
+                "questionType" : 1,
+                "question" : {
+                    "text" : "¿cuánto es 2 + 3 + 3?"
+                },
+                "answerType" : 1,
+                "answers" : [
+                    {
+                        "text" : 4,
+                        "correct" : true
+                    },
+                    {
+                        "text" : 5,
+                        "correct" : false
+                    },
+                    {
+                        "text" : 8,
+                        "correct" : false               
+                    },
+                    {
+                        "text" : 1,
+                        "correct" : false
+                    }
+                ],
+                "gameMode" : "normal",
+                "availableTime" : 40,
+                "maxPoints" : 300
+            },
+            "submissions" : [
+                {
+                    "name" : "ArisCR7",
+                    "answer" : 8,
+                    "points" : 299
+                }, 
+                {
+                    "name" : "MrS",
+                    "answer" : 8,
+                    "points" : 220
+                },
+                {
+                    "name" : "Gus",
+                    "answer" : 8,
+                    "points" : 260
+                }
+            ]
+        }
+    ],
+    "playersJoined": [
+        {
+            "name": "ArisCR7"
+        },
+        {
+            "name": "MrS"
+        },
+        {
+            "name": "Gus"
         }
     ]
 
@@ -189,14 +247,22 @@ Host: 127.0.0.1:3003
 
 # Update from wapixId
 ##################################################
-PATCH  http://127.0.0.1:3003/api/result/5fa1a8cd5a4e083c60c1ce58 HTTP/1.1
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0Mjk5ODQsImV4cCI6MTYwNDUxNjM4NH0.xtWKk8aRUZJA-Z_SX-tbEcA3UaSydvd9wmqP3bCjPGk
+PATCH  http://127.0.0.1:3003/api/result/5fbd95381982fd092c3b002b HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2RkOTNkYTg0MzkxNDQiLCJ1c2VybmFtZSI6Ikx1aXMgR2FsbGVnb3MiLCJlbWFpbCI6InN0b21wZXJjaXRvQGhvdG1haWwuY29tIiwiaWF0IjoxNjA2MjU1Mzg2LCJleHAiOjE2MDYzNDE3ODZ9.Xmf4h3Jgqe4a3tyGV54bD0EEiad828oh7mZh_vknpj0
 content-type: application/json
 
 {
-    "result" : ["Esta es una prueba", 
-                "Segunda prueba"
-    ]    
+    "playersJoined": [
+        {
+            "name": "ArisCR7"
+        },
+        {
+            "name": "MrS"
+        },
+        {
+            "name": "Gus"
+        }
+    ]
 }
 
 ##################################################
@@ -206,7 +272,7 @@ content-type: application/json
 
 # Delete from wapixId
 ##################################################
-DELETE http://127.0.0.1:3003/api/result/5fa0dd49770f0200ab852e25 HTTP/1.1
+DELETE http://127.0.0.1:3003/api/result/5fbd9ee21982fd092c3b002c HTTP/1.1
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2RkOTNkYTg0MzkxNDQiLCJ1c2VybmFtZSI6Ikx1aXMgR2FsbGVnb3MiLCJlbWFpbCI6InN0b21wZXJjaXRvQGhvdG1haWwuY29tIiwiaWF0IjoxNjA2MjU1Mzg2LCJleHAiOjE2MDYzNDE3ODZ9.Xmf4h3Jgqe4a3tyGV54bD0EEiad828oh7mZh_vknpj0
 
 ##################################################

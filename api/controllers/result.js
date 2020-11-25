@@ -73,6 +73,10 @@ function updateResult(req, res) {
     if(body.result != undefined) {
         update.result = body.result;
     }
+    
+    if(body.playersJoined != undefined) {
+        update.playersJoined = body.playersJoined;
+    }
 
     Result.findOneAndUpdate({ _id : resultId }, update, { new : true, useFindAndModify : false}, (err,updatedResult) =>{
         if(err){
