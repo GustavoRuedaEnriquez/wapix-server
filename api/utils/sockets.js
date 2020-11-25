@@ -29,8 +29,8 @@ function configureSockets(server) {
             socket.to(player.hostId).emit('wapix-send-player', player);
         });
         /* Host starts the wapix */
-        socket.on('wapix-host-start-game', (wapixId) => {
-            socket.to(wapixId).emit('wapix-start-game');
+        socket.on('wapix-host-start-game', (data) => {
+            socket.to(data.wapixId).emit('wapix-start-game', data.resultId);
         });
         /* Host shows a wapix question */
         socket.on('wapix-host-show-question', (data) => {

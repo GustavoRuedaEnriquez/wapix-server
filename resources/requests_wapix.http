@@ -70,7 +70,7 @@ Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Zjk3NzdiMzM3N2E2
 # Read question
 ##################################################
 GET http://127.0.0.1:3003/api/wapix/5fa0dd49770f0200ab852e25/2 HTTP/1.1
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0NjEyMTUsImV4cCI6MTYwNDU0NzYxNX0.BO7p9YcFiJ5k9CowIr_67lF2S06MtnezEMU5Eyol-lQ
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2RkOTNkYTg0MzkxNDQiLCJ1c2VybmFtZSI6Ikx1aXMgR2FsbGVnb3MiLCJlbWFpbCI6InN0b21wZXJjaXRvQGhvdG1haWwuY29tIiwiaWF0IjoxNjA2MjU1Mzg2LCJleHAiOjE2MDYzNDE3ODZ9.Xmf4h3Jgqe4a3tyGV54bD0EEiad828oh7mZh_vknpj0
 Host: 127.0.0.1:3003
 
 ##################################################
