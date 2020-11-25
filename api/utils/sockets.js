@@ -20,13 +20,21 @@ function configureSockets(server) {
         /* Enable wapix */
         socket.on('wapix-enable-game', (wapixId) => {
             socket.join(wapixId);
-            console.log(`A game wapix has been enabled: ${wapixId}\n`);
+            //console.log(`A game wapix has been enabled: ${wapixId}\n`);
         });
         /* A player connects to a wapix */
         socket.on('wapix-connect-player', (player) => {
             socket.join(player.hostId);
-            console.log(`A player has joined: ${player.username}`);
+            //console.log(`A player has joined: ${player.username}`);
             socket.to(player.hostId).emit('wapix-send-player', player);
+        });
+        /* Host starts the wapix */
+        socket.on('wapix-host-start-game', (wapixId) => {
+            socket.to(wapixId).emit('wapix-start-game');
+        });
+        /* Host shows a wapix question */
+        socket.on('wapix-host-show-question', (data) => {
+            socket.to(data.wapixId).emit('wapix-send-question', data);
         });
     });
 
