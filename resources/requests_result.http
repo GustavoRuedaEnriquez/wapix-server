@@ -13,209 +13,7 @@ content-type: application/json
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2RkOTNkYTg0MzkxNDQiLCJ1c2VybmFtZSI6Ikx1aXMgR2FsbGVnb3MiLCJlbWFpbCI6InN0b21wZXJjaXRvQGhvdG1haWwuY29tIiwiaWF0IjoxNjA2MjU1Mzg2LCJleHAiOjE2MDYzNDE3ODZ9.Xmf4h3Jgqe4a3tyGV54bD0EEiad828oh7mZh_vknpj0
 
 {
-    "wapixId" : "5fbacaa7e88cc93b08287b2e",
-    "result" : [
-        {
-            "question" :  {
-                "questionType" : 1,
-                "question" : {
-                    "text" : "¿cuánto es 2 + 2?"
-                },
-                "answerType" : 1,
-                "answers" : [
-                    {
-                        "text" : 4,
-                        "correct" : true
-                    },
-                    {
-                        "text" : 3,
-                        "correct" : false
-                    },
-                    {
-                        "text" : 2,
-                        "correct" : false               
-                    },
-                    {
-                        "text" : 1,
-                        "correct" : false
-                    }
-                ],
-                "gameMode" : "normal",
-                "availableTime" : 40,
-                "maxPoints" : 300
-            },
-            "submissions" : [
-                {
-                    "name" : "ArisCR7",
-                    "answer" : 4,
-                    "points" : 150
-                }, 
-                {
-                    "name" : "MrS",
-                    "answer" : 4,
-                    "points" : 220
-                },
-                {
-                    "name" : "Gus",
-                    "answer" : 1,
-                    "points" : 0
-                }
-            ]
-        },
-        {
-            "question" :  {
-                "questionType" : 1,
-                "question" : {
-                    "text" : "¿cuánto es 2 + 3?"
-                },
-                "answerType" : 1,
-                "answers" : [
-                    {
-                        "text" : 4,
-                        "correct" : true
-                    },
-                    {
-                        "text" : 5,
-                        "correct" : false
-                    },
-                    {
-                        "text" : 2,
-                        "correct" : false               
-                    },
-                    {
-                        "text" : 1,
-                        "correct" : false
-                    }
-                ],
-                "gameMode" : "normal",
-                "availableTime" : 40,
-                "maxPoints" : 300
-            },
-            "submissions" : [
-                {
-                    "name" : "ArisCR7",
-                    "answer" : 4,
-                    "points" : 0
-                }, 
-                {
-                    "name" : "MrS",
-                    "answer" : 5,
-                    "points" : 220
-                },
-                {
-                    "name" : "Gus",
-                    "answer" : 5,
-                    "points" : 260
-                }
-            ]
-        },
-        {
-            "question" :  {
-                "questionType" : 1,
-                "question" : {
-                    "text" : "¿cuánto es 2 - 2?"
-                },
-                "answerType" : 1,
-                "answers" : [
-                    {
-                        "text" : 4,
-                        "correct" : true
-                    },
-                    {
-                        "text" : 3,
-                        "correct" : false
-                    },
-                    {
-                        "text" : 2,
-                        "correct" : false               
-                    },
-                    {
-                        "text" : 0,
-                        "correct" : false
-                    }
-                ],
-                "gameMode" : "normal",
-                "availableTime" : 40,
-                "maxPoints" : 300
-            },
-            "submissions" : [
-                {
-                    "name" : "ArisCR7",
-                    "answer" : 0,
-                    "points" : 150
-                }, 
-                {
-                    "name" : "MrS",
-                    "answer" : 0,
-                    "points" : 220
-                },
-                {
-                    "name" : "Gus",
-                    "answer" : 0,
-                    "points" : 200
-                }
-            ]
-        },
-        {
-            "question" :  {
-                "questionType" : 1,
-                "question" : {
-                    "text" : "¿cuánto es 2 + 3 + 3?"
-                },
-                "answerType" : 1,
-                "answers" : [
-                    {
-                        "text" : 4,
-                        "correct" : true
-                    },
-                    {
-                        "text" : 5,
-                        "correct" : false
-                    },
-                    {
-                        "text" : 8,
-                        "correct" : false               
-                    },
-                    {
-                        "text" : 1,
-                        "correct" : false
-                    }
-                ],
-                "gameMode" : "normal",
-                "availableTime" : 40,
-                "maxPoints" : 300
-            },
-            "submissions" : [
-                {
-                    "name" : "ArisCR7",
-                    "answer" : 8,
-                    "points" : 299
-                }, 
-                {
-                    "name" : "MrS",
-                    "answer" : 8,
-                    "points" : 220
-                },
-                {
-                    "name" : "Gus",
-                    "answer" : 8,
-                    "points" : 260
-                }
-            ]
-        }
-    ],
-    "playersJoined": [
-        {
-            "name": "ArisCR7"
-        },
-        {
-            "name": "MrS"
-        },
-        {
-            "name": "Gus"
-        }
-    ]
-
+    "wapixId" : "5fa0dd49770f0200ab852e25"
 }
 
 ##################################################
@@ -225,8 +23,8 @@ Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2Rk
 
 # Read Result 
 ##################################################
-GET http://127.0.0.1:3003/api/result/5fa1a8cd5a4e083c60c1ce58 HTTP/1.1
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0Mjk5ODQsImV4cCI6MTYwNDUxNjM4NH0.xtWKk8aRUZJA-Z_SX-tbEcA3UaSydvd9wmqP3bCjPGk
+GET http://127.0.0.1:3003/api/result/5fbe259291ca40056f734343 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2RkOTNkYTg0MzkxNDQiLCJ1c2VybmFtZSI6Ikx1aXMgR2FsbGVnb3MiLCJlbWFpbCI6InN0b21wZXJjaXRvQGhvdG1haWwuY29tIiwiaWF0IjoxNjA2MjU1Mzg2LCJleHAiOjE2MDYzNDE3ODZ9.Xmf4h3Jgqe4a3tyGV54bD0EEiad828oh7mZh_vknpj0
 Host: 127.0.0.1:3003
 
 ##################################################
@@ -236,8 +34,8 @@ Host: 127.0.0.1:3003
 
 # Read results from wapixId
 ##################################################
-GET http://127.0.0.1:3003/api/result/wapixId/5fa0dd49770f0200ab852e25 HTTP/1.1
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExMGEwMDU2NTM3ODAxMWNjZTY3YmEiLCJ1c2VybmFtZSI6Ikd1c3Rhdm8gUnVlZGEiLCJlbWFpbCI6ImdhcmVfOThAaG90bWFpbC5jb20iLCJpYXQiOjE2MDQ0Mjk5ODQsImV4cCI6MTYwNDUxNjM4NH0.xtWKk8aRUZJA-Z_SX-tbEcA3UaSydvd9wmqP3bCjPGk
+GET http://127.0.0.1:3003/api/result/wapixId/5fbe259291ca40056f734343 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2RkOTNkYTg0MzkxNDQiLCJ1c2VybmFtZSI6Ikx1aXMgR2FsbGVnb3MiLCJlbWFpbCI6InN0b21wZXJjaXRvQGhvdG1haWwuY29tIiwiaWF0IjoxNjA2MjU1Mzg2LCJleHAiOjE2MDYzNDE3ODZ9.Xmf4h3Jgqe4a3tyGV54bD0EEiad828oh7mZh_vknpj0
 Host: 127.0.0.1:3003
 
 ##################################################
@@ -270,9 +68,44 @@ content-type: application/json
 
 
 
+# Add question to result
+##################################################
+PATCH  http://127.0.0.1:3003/api/result-add-question/5fbe29995ee43405be824510 HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2RkOTNkYTg0MzkxNDQiLCJ1c2VybmFtZSI6Ikx1aXMgR2FsbGVnb3MiLCJlbWFpbCI6InN0b21wZXJjaXRvQGhvdG1haWwuY29tIiwiaWF0IjoxNjA2MjU1Mzg2LCJleHAiOjE2MDYzNDE3ODZ9.Xmf4h3Jgqe4a3tyGV54bD0EEiad828oh7mZh_vknpj0
+content-type: application/json
+
+{"question":{"questionText":"¿Cuánto es 2 + 2?","questionType":"text","questionTime":12,"maxPoints":100,"gameMode":"normal","answers":[{"answerText":"4","isCorrect":true},{"answerText":"3","isCorrect":""},{"answerText":"2","isCorrect":""}],"questionNumber":1,"submissions":[]}}
+
+##################################################
+
+
+
+
+# Add submission to question in result
+##################################################
+PATCH  http://127.0.0.1:3003/api/result-add-submission/5fbe1de4392c5a04ac30a8ca HTTP/1.1
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2RkOTNkYTg0MzkxNDQiLCJ1c2VybmFtZSI6Ikx1aXMgR2FsbGVnb3MiLCJlbWFpbCI6InN0b21wZXJjaXRvQGhvdG1haWwuY29tIiwiaWF0IjoxNjA2MjU1Mzg2LCJleHAiOjE2MDYzNDE3ODZ9.Xmf4h3Jgqe4a3tyGV54bD0EEiad828oh7mZh_vknpj0
+content-type: application/json
+
+{
+    "submission" : {
+        "name" : "ArisCR7",
+        "answer" : 1,
+        "points" : 100
+    },
+    "questionNumber" : 1
+
+}
+
+##################################################
+
+
+
+
+
 # Delete from wapixId
 ##################################################
-DELETE http://127.0.0.1:3003/api/result/5fbd9ee21982fd092c3b002c HTTP/1.1
+DELETE http://127.0.0.1:3003/api/result/5fbe1de4392c5a04ac30a8ca HTTP/1.1
 Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1ZmExZGNmNGZmM2RkOTNkYTg0MzkxNDQiLCJ1c2VybmFtZSI6Ikx1aXMgR2FsbGVnb3MiLCJlbWFpbCI6InN0b21wZXJjaXRvQGhvdG1haWwuY29tIiwiaWF0IjoxNjA2MjU1Mzg2LCJleHAiOjE2MDYzNDE3ODZ9.Xmf4h3Jgqe4a3tyGV54bD0EEiad828oh7mZh_vknpj0
 
 ##################################################

@@ -91,6 +91,44 @@ function updateResult(req, res) {
     });
 }
 
+function addQuestionToResult(req, res) {
+    let resultId = req.params._id;
+    let body = req.body;
+    let question = body.question;
+
+    Result.findOneAndUpdate({ _id : resultId }, { $addToSet : { result : question } }, { new : true, useFindAndModify : false}, (err,updatedResult) =>{
+        if(err){
+            res.status(500).send({ message: `${err}` });
+        }else{
+            if(!updatedResult){
+                console.log('Could not update the result\'s data.')
+                res.status(404).send({ message : 'Could not update the result\'s data.' });
+            }else{
+                res.status(200).send({ message :'Result\'s data updated.', result : updatedResult })
+            }
+        }
+    });
+}
+
+function addSubmissionToQuestionOnResult(req, res) {
+    let resultId = req.params._id;
+    let body = req.body;
+    let questionNumber = body.questionNumber;
+    let submission = body.submission;
+
+    Result.findOneAndUpdate({ "_id" : resultId, "result.questionNumber" : questionNumber }, { $push : { "result.$.submissions" :  submission } }, { new : true, useFindAndModify : false}, (err,updatedResult) =>{
+        if(err){
+            res.status(500).send({ message: `${err}` });
+        }else{
+            if(!updatedResult){
+                res.status(404).send({ message : 'Could not update the result\'s data.' });
+            }else{
+                res.status(200).send({ message :'Result\'s data updated.', result : updatedResult })
+            }
+        }
+    });
+}
+
 function deleteResultById(req, res) {
     let resultId = req.params._id;
     Result.deleteOne({ _id : resultId}, (err) => {
@@ -108,5 +146,7 @@ module.exports = {
     readResult,
     readResultByWapixId,
     updateResult,
+    addQuestionToResult,
+    addSubmissionToQuestionOnResult,
     deleteResultById
 }
