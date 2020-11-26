@@ -28,6 +28,10 @@ function configureSockets(server) {
             //console.log(`A player has joined: ${player.username}`);
             socket.to(player.hostId).emit('wapix-send-player', player);
         });
+        /* Clients answers a question */
+        socket.on('wapix-client-has-answered', (wapixId) => {
+            socket.to(wapixId).emit('wapix-update-answers-number');
+        });
         /* Host starts the wapix */
         socket.on('wapix-host-start-game', (data) => {
             socket.to(data.wapixId).emit('wapix-start-game', data.resultId);
@@ -35,6 +39,14 @@ function configureSockets(server) {
         /* Host shows a wapix question */
         socket.on('wapix-host-show-question', (data) => {
             socket.to(data.wapixId).emit('wapix-send-question', data);
+        });
+        /* Host shows a wapix question */
+        socket.on('wapix-host-next-question', (wapixId) => {
+            socket.to(wapixId).emit('wapix-next-question');
+        });
+        /* Question's time runs out */
+        socket.on('wapix-timeout', (wapixId) => {
+            socket.to(wapixId).emit('wapix-question-timeout');
         });
     });
 
