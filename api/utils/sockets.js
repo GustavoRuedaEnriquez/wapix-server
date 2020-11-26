@@ -16,16 +16,13 @@ function configureSockets(server) {
     });
     
     io.on('connection', socket => {
-        console.log(`Socket connection with client established.`);
         /* Enable wapix */
         socket.on('wapix-enable-game', (wapixId) => {
             socket.join(wapixId);
-            //console.log(`A game wapix has been enabled: ${wapixId}\n`);
         });
         /* A player connects to a wapix */
         socket.on('wapix-connect-player', (player) => {
             socket.join(player.hostId);
-            //console.log(`A player has joined: ${player.username}`);
             socket.to(player.hostId).emit('wapix-send-player', player);
         });
         /* Clients answers a question */
@@ -47,6 +44,10 @@ function configureSockets(server) {
         /* Question's time runs out */
         socket.on('wapix-timeout', (wapixId) => {
             socket.to(wapixId).emit('wapix-question-timeout');
+        });
+        /* Host ends game */
+        socket.on('wapix-host-ends-game', (wapixId) => {
+            socket.to(wapixId).emit('wapix-disconnect-player');
         });
     });
 
