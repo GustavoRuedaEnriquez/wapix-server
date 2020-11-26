@@ -10,7 +10,7 @@ let api = express.Router();
 
 /**
  * @swagger
- * /result:
+ * /api/result:
  *  post:
  *      tags:
  *          - name: Result
@@ -37,7 +37,7 @@ api.post('/result', mdAuth.ensureAuth, ResultController.createResult);
 
 /**
  * @swagger
- * /result/{id}:
+ * /api/result/{id}:
  *  get:
  *      tags:
  *          - name: Result
@@ -61,7 +61,7 @@ api.get('/result/:_id', mdAuth.ensureAuth, ResultController.readResult);
 
 /**
  * @swagger
- * /result/wapixId/{wapixId}:
+ * /api/result/wapixId/{wapixId}:
  *  get:
  *      tags:
  *          - name: Result
@@ -83,7 +83,7 @@ api.get('/result/wapixId/:wapixId', mdAuth.ensureAuth, ResultController.readResu
 
 /**
  * @swagger
- * /result/{id}:
+ * /api/result/{id}:
  *  patch:
  *      tags:
  *          - name: Result
@@ -120,7 +120,7 @@ api.patch('/result-add-submission/:_id', mdAuth.ensureAuth, ResultController.add
 
 /**
  * @swagger
- * /result/{id}:
+ * /api/result/{id}:
  *  delete:
  *      tags:
  *          - name: Result

@@ -10,7 +10,7 @@ let api = express.Router();
 
 /**
  * @swagger
- * /wapix:
+ * /api/wapix:
  *  post:
  *      tags:
  *          - name: Wapix
@@ -37,7 +37,7 @@ api.post('/wapix', mdAuth.ensureAuth, WapixController.createWapix);
 
 /**
  * @swagger
- * /wapix/{id}:
+ * /api/wapix/{id}:
  *  get:
  *      tags:
  *          - name: Wapix
@@ -61,7 +61,7 @@ api.get('/wapix/:_id', mdAuth.ensureAuth, WapixController.readWapix);
 
 /**
  * @swagger
- * /wapix/creator/{email}:
+ * /api/wapix/{creator}/{email}:
  *  get:
  *      tags:
  *          - name: Wapix
@@ -83,17 +83,110 @@ api.get('/wapix/:_id', mdAuth.ensureAuth, WapixController.readWapix);
  */
 api.get('/wapix/creator/:email', mdAuth.ensureAuth, WapixController.readWapixesByEmail)
 
+/**
+ * @swagger
+ * /api/wapix/{_id}/{number}:
+ *  get:
+ *      tags:
+ *          - name: Wapix
+ *      summary: "Read Wapix by Question"
+ *      description: Get wapix by question number.
+ *      parameters:
+ *          - name: "_id"
+ *            in: "path"
+ *            description: "Id of the wapix to read"
+ *            required: true
+ *            type: string 
+ *          - name: "number"
+ *            in: "path"
+ *            description: "Number of the question of the wapix to read"
+ *            required: true
+ *            type: string 
+ *      responses:
+ *          200:
+ *              description: Question obtained.
+ *          404:
+ *              description: Wapix not found.
+ *          500:
+ *              description: Error.
+ */
 api.get('/wapix/:_id/:number', mdAuth.ensureAuth, WapixController.readWapixQuestion)
 
+/**
+ * @swagger
+ * /api/wapix-activate/{_id}:
+ *  get:
+ *      tags:
+ *          - name: Wapix
+ *      summary: "Activate Wapix to be playable"
+ *      description: Activate wapix by id.
+ *      parameters:
+ *          - name: "_id"
+ *            in: "path"
+ *            description: "Id of the wapix to activate"
+ *            required: true
+ *            type: string
+ *      responses:
+ *          200:
+ *              description: Wapix activated.
+ *          404:
+ *              description: Wapix not found.
+ *          500:
+ *              description: Error.
+ */
 api.patch('/wapix-activate/:_id', mdAuth.ensureAuth, WapixController.activateWapix)
 
+/**
+ * @swagger
+ * /api/wapix-deactivate/{_id}:
+ *  get:
+ *      tags:
+ *          - name: Wapix
+ *      summary: "Deactivate Wapix to be unplayable"
+ *      description: Deactivate wapix by id.
+ *      parameters:
+ *          - name: "_id"
+ *            in: "path"
+ *            description: "Id of the wapix to deactivate"
+ *            required: true
+ *            type: string
+ *      responses:
+ *          200:
+ *              description: Wapix deactivated.
+ *          404:
+ *              description: Wapix not found.
+ *          500:
+ *              description: Error.
+ */
 api.patch('/wapix-deactivate/:_id', mdAuth.ensureAuth, WapixController.deactivateWapix)
 
+/**
+ * @swagger
+ * /api/wapix-activate/{code}:
+ *  get:
+ *      tags:
+ *          - name: Wapix
+ *      summary: "Wapix to play with code"
+ *      description: Play wapix with its code.
+ *      parameters:
+ *          - name: "code"
+ *            in: "path"
+ *            description: "Code of the wapix to play"
+ *            required: true
+ *            type: string
+ *      responses:
+ *          200:
+ *              Wapix available to play..
+ *          404:
+ *              There is not a Wapix available to play with that code..
+ *          500:
+ *              description: Error.
+ */
 api.get('/wapix-by-code/:code', WapixController.readWapixByCode)
 
 /**
  * @swagger
- * /wapix/{id}:
+ * /api/wapix/{id}:
  *  patch:
  *      tags:
  *          - name: Wapix
@@ -123,7 +216,7 @@ api.patch('/wapix/:_id', mdAuth.ensureAuth, WapixController.updateWapix);
 
 /**
  * @swagger
- * /wapix/{id}:
+ * /api/wapix/{id}:
  *  delete:
  *      tags:
  *          - name: Wapix
