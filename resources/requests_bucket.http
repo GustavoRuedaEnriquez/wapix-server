@@ -1,0 +1,21 @@
+### Request tests
+
+### IMPORTANT: Please make sure to have installed the REST Client extension
+### for VS Code, the one created by Huachao Mao.
+
+### The Authorization token expires each day, if neccessary, run the login 
+### again to obtain a new one.
+
+# Upload image
+##################################################
+POST http://127.0.0.1:3003/upload HTTP/1.1
+content-type: application/json
+
+{
+    "data": {
+    "Etag": "1",
+    "Location": "https://scontent.fgdl5-1.fna.fbcdn.net/v/t1.0-9/39388077_2535394113168098_1315713671501971456_n.jpg?_nc_cat=111&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeFz-ycs8CraIZgysvaXiD-2oaL26vWaxqOhovbq9ZrGo7rmqJ3msmX-2HUIg1GI0PdXUksEsLtqWvufHrMycvfS&_nc_ohc=KrRmiYw3bMwAX-1Mqg-&_nc_ht=scontent.fgdl5-1.fna&oh=0e4310eff70e93f3b43cfd8d8e0354c9&oe=5FE6EC00",
+    "key": "ArisCr",
+    "Key": "ACH",
+    "Bucket": "wapix2020"
+}

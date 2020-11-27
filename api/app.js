@@ -7,9 +7,21 @@ const bodyParser = require('body-parser');
 const handlebars = require('express-handlebars');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+var multer = require('multer');
+var aws = require('aws-sdk');
+var multerS3 = require('multer-s3');
 
+var secretAccessKey = process.env.AWS_SECRET_KEY;
+var accessKeyId = process.env.AWS_ACCESS_KEY;
+var bucketName = process.env.BUCKET || 'wapix2020';
 
 const app = express();
+var s3 = new aws.S3({
+  secretAccessKey: secretAccessKey,
+  accessKeyId: accessKeyId,
+  Bucket: bucketName,
+  region: 'us-east-1'
+});
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -61,5 +73,23 @@ app.use('/',viewsRoutes);
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 app.set('views', 'api/views');
+
+/* aws multer-s3 */
+var upload  = multer({
+  storage: multerS3({
+      s3: s3,
+      bucket: bucketName,
+      acl: 'public-read',
+      key: function (req, file, cb) {
+        cb(null, Date.now().toString())
+      }
+  })
+});
+//use by upload form
+app.post('/upload', upload.array('upl',1), function (req, res, next) {
+  console.log(res);
+  res.send("Uploaded!");
+}); 
+
 
 module.exports = app;
