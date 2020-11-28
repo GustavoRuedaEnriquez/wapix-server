@@ -245,7 +245,7 @@ const upload = multer({ storage: multerstorages3, fileFilter: (req, file, cb) =>
 } });
 
 function uploadImage (req, res){
-    res.send("Uploaded!");
+    res.status(200).send({ message: 'Image uploaded!', urlImage : req.file.location});
 }
 
 
