@@ -8,19 +8,19 @@ const handlebars = require('express-handlebars');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 var multer = require('multer');
-var aws = require('aws-sdk');
+var AWS = require('aws-sdk');
 var multerS3 = require('multer-s3');
+require('dotenv').config();
 
-var secretAccessKey = process.env.AWS_SECRET_KEY;
-var accessKeyId = process.env.AWS_ACCESS_KEY;
-var bucketName = process.env.BUCKET || 'wapix2020';
+var BUCKET_NAME = process.env.BUCKET_NAME || 'wapix2020pae';
+var IAM_USER_KEY = process.env.IAM_USER_KEY;
+var IAM_USER_SECRET = process.env.IAM_USER_SECRET;
 
 const app = express();
-var s3 = new aws.S3({
-  secretAccessKey: secretAccessKey,
-  accessKeyId: accessKeyId,
-  Bucket: bucketName,
-  region: 'us-east-1'
+const s3bucket = new AWS.S3({
+  accessKeyId: IAM_USER_KEY,
+  secretAccessKey: IAM_USER_SECRET,
+  bucket: BUCKET_NAME
 });
 
 const swaggerOptions = {
@@ -75,19 +75,33 @@ app.set('view engine', 'handlebars');
 app.set('views', 'api/views');
 
 /* aws multer-s3 */
-var upload  = multer({
-  storage: multerS3({
-      s3: s3,
-      bucket: bucketName,
-      acl: 'public-read',
-      key: function (req, file, cb) {
-        cb(null, Date.now().toString())
-      }
-  })
+const multerstorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'api/uploads')
+  },
+  filename: function (req, file, cb) {
+    const ext = file.originalname.split('.').pop();
+    cb(null, `${file.fieldname}-${Date.now()}.${ext}`);
+  }
 });
+
+const multerstorages3 = multerS3({
+  s3: s3bucket,
+  bucket: BUCKET_NAME,
+  acl: 'public-read',
+  key: function (req, file, cb) {
+    const ext = file.originalname.split('.').pop();
+    cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
+  }
+});
+
+const upload = multer({ storage: multerstorages3, fileFilter: (req, file, cb) => {
+  const flag = file.mimetype.startsWith('image');
+  cb(null, flag);
+} });
+
 //use by upload form
-app.post('/upload', upload.array('upl',1), function (req, res, next) {
-  console.log(res);
+app.post('/', upload.single('image'), (req, res) => {
   res.send("Uploaded!");
 }); 
 
