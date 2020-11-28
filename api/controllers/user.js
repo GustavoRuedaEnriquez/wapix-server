@@ -5,10 +5,22 @@ const bcrypt = require('bcrypt');
 const jwt = require('../utils/jwt');
 const { OAuth2Client } = require('google-auth-library');
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+require('dotenv').config();
+var multer = require('multer');
+var AWS = require('aws-sdk');
+var multerS3 = require('multer-s3');
+
+var BUCKET_NAME = process.env.BUCKET_NAME || 'wapix2020pae';
+var IAM_USER_KEY = process.env.IAM_USER_KEY;
+var IAM_USER_SECRET = process.env.IAM_USER_SECRET;
+
+const s3bucket = new AWS.S3({
+  accessKeyId: IAM_USER_KEY,
+  secretAccessKey: IAM_USER_SECRET,
+  bucket: BUCKET_NAME
+});
 
 const User = require('../models/user');
-
-require('dotenv').config();
 
 let SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS);
 
@@ -206,6 +218,36 @@ function googleLogin(req, res) {
     }).catch(err => {res.status(400).send();});
 }
 
+/* aws multer-s3 */
+const multerstorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'api/uploads')
+    },
+    filename: function (req, file, cb) {
+      const ext = file.originalname.split('.').pop();
+      cb(null, `${file.fieldname}-${Date.now()}.${ext}`);
+    }
+});
+  
+const multerstorages3 = multerS3({
+  s3: s3bucket,
+  bucket: BUCKET_NAME,
+  acl: 'public-read',
+  key: function (req, file, cb) {
+    const ext = file.originalname.split('.').pop();
+    cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
+  }
+});
+
+const upload = multer({ storage: multerstorages3, fileFilter: (req, file, cb) => {
+  const flag = file.mimetype.startsWith('image');
+  cb(null, flag);
+} });
+
+function uploadImage (req, res){
+    res.send("Uploaded!");
+}
+
 
 module.exports = {
     createUser,
@@ -213,5 +255,7 @@ module.exports = {
     updateUser,
     deleteUser,
     login,
-    googleLogin
+    googleLogin,
+    uploadImage,
+    upload
 }

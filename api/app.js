@@ -7,21 +7,8 @@ const bodyParser = require('body-parser');
 const handlebars = require('express-handlebars');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-var multer = require('multer');
-var AWS = require('aws-sdk');
-var multerS3 = require('multer-s3');
-require('dotenv').config();
-
-var BUCKET_NAME = process.env.BUCKET_NAME || 'wapix2020pae';
-var IAM_USER_KEY = process.env.IAM_USER_KEY;
-var IAM_USER_SECRET = process.env.IAM_USER_SECRET;
 
 const app = express();
-const s3bucket = new AWS.S3({
-  accessKeyId: IAM_USER_KEY,
-  secretAccessKey: IAM_USER_SECRET,
-  bucket: BUCKET_NAME
-});
 
 const swaggerOptions = {
     swaggerDefinition: {
@@ -73,37 +60,5 @@ app.use('/',viewsRoutes);
 app.engine('handlebars', handlebars());
 app.set('view engine', 'handlebars');
 app.set('views', 'api/views');
-
-/* aws multer-s3 */
-const multerstorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'api/uploads')
-  },
-  filename: function (req, file, cb) {
-    const ext = file.originalname.split('.').pop();
-    cb(null, `${file.fieldname}-${Date.now()}.${ext}`);
-  }
-});
-
-const multerstorages3 = multerS3({
-  s3: s3bucket,
-  bucket: BUCKET_NAME,
-  acl: 'public-read',
-  key: function (req, file, cb) {
-    const ext = file.originalname.split('.').pop();
-    cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
-  }
-});
-
-const upload = multer({ storage: multerstorages3, fileFilter: (req, file, cb) => {
-  const flag = file.mimetype.startsWith('image');
-  cb(null, flag);
-} });
-
-//use by upload form
-app.post('/', upload.single('image'), (req, res) => {
-  res.send("Uploaded!");
-}); 
-
 
 module.exports = app;
