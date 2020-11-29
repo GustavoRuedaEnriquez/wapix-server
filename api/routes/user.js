@@ -10,6 +10,21 @@ let api = express.Router();
 
 /**
  * @swagger
+ *components:
+ *  securitySchemes:
+ * 
+ *    bearerAuth:          
+ *      type: http
+ *      scheme: bearer
+ *      bearerFormat: JWT    
+ * 
+ *    basicAuth:          
+ *      type: http
+ *      scheme: basic
+ * 
+ *security:
+ *  - bearerAuth: []
+ * 
  * /api/user:
  *  post:
  *      tags:
@@ -39,16 +54,19 @@ api.post('/user', UserController.createUser);
  * @swagger
  * /api/user/{email}:
  *  get:
+ *      security:
+ *        - bearerAuth: []
  *      tags:
  *          - name: User
  *      summary: "Find user by email"
  *      description: Get user by email.
  *      parameters:
- *          - name: "email"
- *            in: "path"
- *            description: "email of the user to return"
+ *          - in: body
+ *            name: body
+ *            description: "User object to be added."
  *            required: true
- *            type: string 
+ *            schema:
+ *               $ref: "#/definitions/User" 
  *      responses:
  *          200:
  *              description: User obtained.
@@ -68,17 +86,12 @@ api.get('/user/:email', mdAuth.ensureAuth, UserController.readUser);
  *      summary: "Update user by email"
  *      description: Update user by email.
  *      parameters:
- *          - name: "email"
- *            in: "path"
- *            description: "email of the user to update"
- *            required: true
- *            type: string 
  *          - in: body
  *            name: body
- *            description: "User object to be updated."
+ *            description: "User object to be added."
  *            required: true
  *            schema:
- *               $ref: "#/definitions/User"
+ *               $ref: "#/definitions/User" 
  *      responses:
  *          200:
  *              description: User updated.
@@ -98,11 +111,12 @@ api.patch('/user/:email', mdAuth.ensureAuth, UserController.updateUser);
  *      summary: "Delete user by email"
  *      description: Delete user by email.
  *      parameters:
- *          - name: "email"
- *            in: "path"
- *            description: "email of the user to be deleted"
+ *          - in: body
+ *            name: body
+ *            description: "User object to be added."
  *            required: true
- *            type: string 
+ *            schema:
+ *               $ref: "#/definitions/User" 
  *      responses:
  *          200:
  *              description: User deleted.
@@ -120,16 +134,12 @@ api.delete('/user/:email', mdAuth.ensureAuth, UserController.deleteUser);
  *      summary: "Logs user into the system"
  *      description: Logs user into the system.
  *      parameters:
- *          - name: "email"
- *            in: "query"
- *            description: "email for login"
+ *          - in: body
+ *            name: body
+ *            description: "User object to be added."
  *            required: true
- *            type: string 
- *          - name: "password"
- *            in: "query"
- *            description: "pasword for login in clear text"
- *            required: true
- *            type: string 
+ *            schema:
+ *               $ref: "#/definitions/User"
  *      responses:
  *          200:
  *              description: Login successfull.
@@ -153,16 +163,12 @@ api.post('/login', UserController.login)
  *      summary: "Logs user into the system using Google Authentication"
  *      description: Logs user into the system with its Google Email.
  *      parameters:
- *          - name: "email"
- *            in: "query"
- *            description: "email for login"
+ *          - in: body
+ *            name: body
+ *            description: "User object to be added."
  *            required: true
- *            type: string 
- *          - name: "password"
- *            in: "query"
- *            description: "paswword for login that comes from Google ID"
- *            required: true
- *            type: string 
+ *            schema:
+ *               $ref: "#/definitions/User" 
  *      responses:
  *          200:
  *              description: Login successfull.
