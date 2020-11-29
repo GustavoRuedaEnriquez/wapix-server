@@ -1,0 +1,858 @@
+{
+	"info": {
+		"_postman_id": "7d7edd1f-8e75-4686-878f-d7c91fb8192d",
+		"name": "Wapix API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CRUD Operations",
+			"item": [
+				{
+					"name": "User Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "808677db-b24f-4deb-a0d8-52d367f1d37d",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.globals.set(\"user-email\", jsonData.user.email);\r",
+									"\r",
+									"pm.test(\"Response's status code is 201\", () => {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"User created successfully.\");\r",
+									"    /* New user */\r",
+									"    pm.expect(response).to.have.ownProperty(\"user\"); \r",
+									"    pm.expect(response.user).to.have.ownProperty(\"_id\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"image\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"username\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"email\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"password\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "{{$randomFirstName}} {{$randomLastName}}",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "{{$randomEmail}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{wapix-dummy-password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{wapix-server-url}}/api/user",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"user"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cbf368b1-c289-4798-ab84-9f42b1675573",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.globals.set(\"token\", jsonData.token);\r",
+									"\r",
+									"pm.test(\"Response's status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"Logged in\");\r",
+									"    /* Token */\r",
+									"    pm.expect(response).to.have.ownProperty(\"token\");\r",
+									"    /* User logged */\r",
+									"    pm.expect(response).to.have.ownProperty(\"user\"); \r",
+									"    pm.expect(response.user).to.have.ownProperty(\"_id\"); \r",
+									"    pm.expect(response.user).to.have.ownProperty(\"image\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"username\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"email\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"password\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "{{user-email}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{wapix-dummy-password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{wapix-server-url}}/api/login",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "41e062c7-37c3-44c7-a31d-d231f86ee565",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response's status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"User obtained\");\r",
+									"    /* User */\r",
+									"    pm.expect(response).to.have.ownProperty(\"user\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{wapix-server-url}}/api/user/{{user-email}}",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"{{user-email}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b42d5ae-154c-42d8-b209-63cf5a181c5e",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response's status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"User's data updated.\");\r",
+									"    /* User */\r",
+									"    pm.expect(response).to.have.ownProperty(\"user\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"_id\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"image\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"username\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"email\");\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"password\");\r",
+									"    pm.expect(response.user.username).to.equal(\"Dummy User\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Username field was updated correctly\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    pm.expect(response.user).to.have.ownProperty(\"username\");\r",
+									"    pm.expect(response.user.username).to.equal(\"Dummy User\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Dummy User",
+									"type": "text"
+								},
+								{
+									"key": "dummy",
+									"value": "dummy",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{wapix-server-url}}/api/user/{{user-email}}",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"{{user-email}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Wapix Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0602b93d-1880-486b-b072-8afc73fd520c",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.globals.set(\"wapix-id\", jsonData.wapix._id);\r",
+									"\r",
+									"pm.test(\"Response's status code is 201\", () => {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"Wapix created successfully.\");\r",
+									"    /* New Wapix */\r",
+									"    pm.expect(response).to.have.ownProperty(\"wapix\"); \r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"_id\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"name\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"creator\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"code\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"questions\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"available\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"lastUpdate\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"version\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Name and creator fields are returned correctly\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"name\");\r",
+									"    pm.expect(response.wapix.name).to.equal(\"Dummy Wapix\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"creator\");\r",
+									"    pm.expect(response.wapix.creator).to.equal(pm.globals.get(\"user-email\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Dummy Wapix",
+									"type": "text"
+								},
+								{
+									"key": "creator",
+									"value": "{{user-email}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{wapix-server-url}}/api/wapix",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"wapix"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Wapix Read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c7ccde57-4c4b-4f8b-abcf-bd270e79f0c4",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response's status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"Wapix obtained\");\r",
+									"    /* New Wapix */\r",
+									"    pm.expect(response).to.have.ownProperty(\"wapix\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{wapix-server-url}}/api/wapix/{{wapix-id}}",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"wapix",
+								"{{wapix-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Wapix Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4eb9c80a-5b09-4a64-bd89-8965b6134a58",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response's status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"Wapix's data updated.\");\r",
+									"    /* New Wapix */\r",
+									"    pm.expect(response).to.have.ownProperty(\"wapix\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"_id\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"name\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"creator\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"code\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"questions\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"available\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"lastUpdate\");\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"version\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Version field was updated correctly\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    pm.expect(response.wapix).to.have.ownProperty(\"version\");\r",
+									"    pm.expect(response.wapix.version).to.equal(2);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "version",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{wapix-server-url}}/api/wapix/{{wapix-id}}",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"wapix",
+								"{{wapix-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Result Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dc35f2fa-dc75-453d-a646-faae64029744",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.globals.set(\"result-id\", jsonData.result._id);\r",
+									"\r",
+									"pm.test(\"Response's status code is 201\", () => {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"Result created successfully.\");\r",
+									"    /* New Result */\r",
+									"    pm.expect(response).to.have.ownProperty(\"result\"); \r",
+									"    pm.expect(response.result).to.have.ownProperty(\"_id\");\r",
+									"    pm.expect(response.result).to.have.ownProperty(\"wapixId\");\r",
+									"    pm.expect(response.result).to.have.ownProperty(\"date\");\r",
+									"    pm.expect(response.result).to.have.ownProperty(\"playersJoined\");\r",
+									"    pm.expect(response.result).to.have.ownProperty(\"result\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"WapixId is returned correctly\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    pm.expect(response.result).to.have.ownProperty(\"wapixId\");\r",
+									"    pm.expect(response.result.wapixId).to.equal(pm.globals.get(\"wapix-id\"));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "wapixId",
+									"value": "{{wapix-id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{wapix-server-url}}/api/result",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"result"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Result Read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e338914c-6c5c-47ba-b591-8ffa41865d31",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response's status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"Result obtained\");\r",
+									"    /* Result */\r",
+									"    pm.expect(response).to.have.ownProperty(\"result\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{wapix-server-url}}/api/result/{{result-id}}",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"result",
+								"{{result-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Result Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "288a782d-0ec2-402d-ad5c-199c7efbf29c",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response's status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"Result's data updated.\");\r",
+									"    /* New Result */\r",
+									"    pm.expect(response).to.have.ownProperty(\"result\"); \r",
+									"    pm.expect(response.result).to.have.ownProperty(\"_id\");\r",
+									"    pm.expect(response.result).to.have.ownProperty(\"wapixId\");\r",
+									"    pm.expect(response.result).to.have.ownProperty(\"date\");\r",
+									"    pm.expect(response.result).to.have.ownProperty(\"playersJoined\");\r",
+									"    pm.expect(response.result).to.have.ownProperty(\"result\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "result",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{wapix-server-url}}/api/result/{{result-id}}",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"result",
+								"{{result-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Result Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "311a740f-1922-445c-a250-6aae248fc307",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response's status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"Result deleted.\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{wapix-server-url}}/api/result/{{result-id}}",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"result",
+								"{{result-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Wapix Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d7744885-bf04-4cd8-8bb3-c609190f7363",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response's status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"Wapix deleted.\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{wapix-server-url}}/api/wapix/{{wapix-id}}",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"wapix",
+								"{{wapix-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9bba1072-dc74-4570-8d59-7cc0007687f7",
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response's status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response includes required attributes.\", function () {\r",
+									"    let response = pm.response.json();\r",
+									"    /* Response message */\r",
+									"    pm.expect(response).to.have.ownProperty(\"message\");\r",
+									"    pm.expect(response.message).to.equal(\"User deleted.\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{wapix-server-url}}/api/user/{{user-email}}",
+							"host": [
+								"{{wapix-server-url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"{{user-email}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
