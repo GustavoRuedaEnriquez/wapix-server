@@ -62,11 +62,13 @@ api.post('/user', UserController.createUser);
  *      description: Get user by email.
  *      parameters:
  *          - in: body
- *            name: body
- *            description: "User object to be added."
- *            required: true
- *            schema:
- *               $ref: "#/definitions/User" 
+ *            name: user
+ *            description: "Email object to be searched."
+ *            required: 
+ *              - email
+ *            properties:
+ *               email: 
+ *                 type: string 
  *      responses:
  *          200:
  *              description: User obtained.
