@@ -177,6 +177,6 @@ api.post('/login', UserController.login)
  */
 api.post('/googleLogin', UserController.googleLogin)
 
-api.post('/upload', UserController.upload.single('image'), UserController.uploadImage); 
+api.post('/upload', UserController.uploadImage); 
 
 module.exports = api;
