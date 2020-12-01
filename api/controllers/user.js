@@ -1,6 +1,8 @@
 'use strict'
 
-require('dotenv').config();
+if(process.env.NODE_ENV=='dev') {
+    require('dotenv').config();
+}
 
 const moment = require('moment');
 const bcrypt = require('bcrypt');

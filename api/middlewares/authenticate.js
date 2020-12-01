@@ -1,6 +1,8 @@
 'use strict'
 
-require('dotenv').config();
+if(process.env.NODE_ENV=='dev') {
+    require('dotenv').config();
+}
 
 const jwt = require('jwt-simple');
 const  moment = require('moment');
