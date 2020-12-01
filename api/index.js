@@ -4,9 +4,7 @@ let app = require('./app');
 let mongoose = require('mongoose');
 let SocketsUtils = require('../api/utils/sockets');
 
-if(process.env.NODE_ENV=='dev') {
-    require('dotenv').config();
-}
+require('dotenv').config();
 
 let server;
 let PORT = process.env.PORT || 3003;

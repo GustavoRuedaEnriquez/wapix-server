@@ -1,8 +1,6 @@
 'use strict'
 
-if(process.env.NODE_ENV=='dev') {
-    require('dotenv').config();
-}
+require('dotenv').config();
 
 const moment = require('moment');
 const bcrypt = require('bcrypt');
@@ -90,9 +88,13 @@ function updateUser(req, res) {
     let userEmail = req.params.email;
     let body = req.body;
     let update = {};
+    let bandera = false;
 
-    if(body.username != undefined && body.username.trim() != '') {
-        update.username = body.username;
+    if(body.username != undefined) {
+        if(body.username.trim() != '') {
+            update.username = body.username;
+            bandera = true;
+        } 
     }
     if(body.password != undefined) {
         update.password = bcrypt.hashSync(body.password, SALT_ROUNDS);
@@ -104,7 +106,7 @@ function updateUser(req, res) {
         update.googleId = body.googleId;
     }
 
-    if(body.username.trim() != '') {
+    if(body.username == undefined || bandera) {
         User.findOneAndUpdate({ email : userEmail }, update, { new : true, useFindAndModify : false}, (err,updatedUser) =>{
             if(err){
                 res.status(500).send({ message: `${err}` });
@@ -222,25 +224,24 @@ function googleLogin(req, res) {
     }).catch(err => {res.status(400).send();});
 }
 
-/* aws multer-s3 */
 const multerstorages3 = multerS3({
-    s3: s3bucket,
-    bucket: BUCKET_NAME,
-    acl: 'public-read',
-    key: function (req, file, cb) {
-      const ext = file.originalname.split('.').pop();
-      cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
-    }
-  });
-  
-  const upload = multer({ storage: multerstorages3, fileFilter: (req, file, cb) => {
-    const flag = file.mimetype.startsWith('image');
-    cb(null, flag);
-  } });
-  
-  function uploadImage (req, res){
-      res.status(200).send({ message: 'Image uploaded!', urlImage : req.file.location});
+  s3: s3bucket,
+  bucket: BUCKET_NAME,
+  acl: 'public-read',
+  key: function (req, file, cb) {
+    const ext = file.originalname.split('.').pop();
+    cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
   }
+});
+
+const upload = multer({ storage: multerstorages3, fileFilter: (req, file, cb) => {
+  const flag = file.mimetype.startsWith('image');
+  cb(null, flag);
+} });
+
+function uploadImage (req, res){
+    res.status(200).send({ message: 'Image uploaded!', urlImage : req.file.location});
+}
 
 
 module.exports = {
@@ -250,5 +251,6 @@ module.exports = {
     deleteUser,
     login,
     googleLogin,
-    uploadImage
+    uploadImage,
+    upload
 }
