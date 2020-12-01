@@ -115,7 +115,7 @@ api.patch('/result/:_id', mdAuth.ensureAuth, ResultController.updateResult);
 api.patch('/result-add-question/:_id', mdAuth.ensureAuth, ResultController.addQuestionToResult);
 
 
-api.patch('/result-add-submission/:_id', mdAuth.ensureAuth, ResultController.addSubmissionToQuestionOnResult);
+api.patch('/result-add-submission/:_id', ResultController.addSubmissionToQuestionOnResult);
 
 
 /**
