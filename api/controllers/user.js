@@ -1,18 +1,22 @@
 'use strict'
 
+if(process.env.NODE_ENV=='dev') {
+    require('dotenv').config();
+}
+
 const moment = require('moment');
 const bcrypt = require('bcrypt');
 const jwt = require('../utils/jwt');
 const { OAuth2Client } = require('google-auth-library');
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-require('dotenv').config();
-var multer = require('multer');
-var AWS = require('aws-sdk');
-var multerS3 = require('multer-s3');
 
-var BUCKET_NAME = process.env.BUCKET_NAME || 'wapix2020pae';
-var IAM_USER_KEY = process.env.IAM_USER_KEY;
-var IAM_USER_SECRET = process.env.IAM_USER_SECRET;
+let multer = require('multer');
+let AWS = require('aws-sdk');
+let multerS3 = require('multer-s3');
+
+let BUCKET_NAME = process.env.BUCKET_NAME || 'wapix2020pae';
+let IAM_USER_KEY = process.env.IAM_USER_KEY;
+let IAM_USER_SECRET = process.env.IAM_USER_SECRET;
 
 const s3bucket = new AWS.S3({
   accessKeyId: IAM_USER_KEY,
