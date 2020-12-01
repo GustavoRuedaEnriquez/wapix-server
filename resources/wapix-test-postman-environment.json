@@ -1,0 +1,24 @@
+{
+	"id": "515838de-d852-4810-9086-854f81728f06",
+	"name": "wapix-environment-test",
+	"values": [
+		{
+			"key": "wapix-server-url",
+			"value": "http://localhost:3003",
+			"enabled": true
+		},
+		{
+			"key": "wapix-client-url",
+			"value": "http://localhost:4200",
+			"enabled": true
+		},
+		{
+			"key": "wapix-dummy-password",
+			"value": "dummypassword",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-11-29T07:26:05.065Z",
+	"_postman_exported_using": "Postman/7.36.0"
+}

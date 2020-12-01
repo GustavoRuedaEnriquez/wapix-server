@@ -7,7 +7,8 @@
     "start": "npm run styles | node ./api/index.js",
     "nodemon": "npm run styles:watch | nodemon ./api/index.js",
     "styles": "sass api/views/styles:api/assets/styles --no-source-map",
-    "styles:watch": "sass api/views/styles:api/assets/styles --no-source-map --watch"
+    "styles:watch": "sass api/views/styles:api/assets/styles --no-source-map --watch",
+    "postman-tests-dev" : "npx newman run resources/wapix-api-postman-collection.json -e resources/wapix-test-postman-environment.json"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "mongoose": "^5.10.9",
     "multer": "^1.4.2",
     "multer-s3": "^2.9.0",
+    "newman": "^5.2.1",
     "socket.io": "^3.0.3",
     "swagger-jsdoc": "^5.0.0",
     "swagger-ui-express": "^4.1.4"
