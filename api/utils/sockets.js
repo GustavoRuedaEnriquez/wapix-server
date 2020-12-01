@@ -8,7 +8,7 @@ const ResultsController = require('../controllers/result');
 function configureSockets(server) {
     const io = socketIO(server, {
         cors : {
-            origin : 'http://localhost:4200',
+            origin : '*',
             methods : ['GET', 'POST', 'PATCH', 'DELETE'],
             allowedHeaders : [],
             credentials : true
