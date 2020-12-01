@@ -86,9 +86,13 @@ function updateUser(req, res) {
     let userEmail = req.params.email;
     let body = req.body;
     let update = {};
+    let bandera = false;
 
-    if(body.username != undefined && body.username.trim() != '') {
-        update.username = body.username;
+    if(body.username != undefined) {
+        if(body.username.trim() != '') {
+            update.username = body.username;
+            bandera = true;
+        } 
     }
     if(body.password != undefined) {
         update.password = bcrypt.hashSync(body.password, SALT_ROUNDS);
@@ -100,7 +104,7 @@ function updateUser(req, res) {
         update.googleId = body.googleId;
     }
 
-    if(body.username.trim() != '') {
+    if(body.username == undefined || bandera) {
         User.findOneAndUpdate({ email : userEmail }, update, { new : true, useFindAndModify : false}, (err,updatedUser) =>{
             if(err){
                 res.status(500).send({ message: `${err}` });
