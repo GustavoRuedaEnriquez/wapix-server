@@ -218,37 +218,25 @@ function googleLogin(req, res) {
     }).catch(err => {res.status(400).send();});
 }
 
-/* aws multer-s3 */
+const multerstorages3 = multerS3({
+  s3: s3bucket,
+  bucket: BUCKET_NAME,
+  acl: 'public-read',
+  key: function (req, file, cb) {
+    const ext = file.originalname.split('.').pop();
+    cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
+  }
+});
+
+const upload = multer({ storage: multerstorages3, fileFilter: (req, file, cb) => {
+  const flag = file.mimetype.startsWith('image');
+  cb(null, flag);
+} });
+
 function uploadImage (req, res){
-    /* const multerstorage = multer.diskStorage({
-        destination: function (req, file, cb) {
-        cb(null, 'api/uploads')
-        },
-        filename: function (req, file, cb) {
-        const ext = file.originalname.split('.').pop();
-        cb(null, `${file.fieldname}-${Date.now()}.${ext}`);
-        }
-    }); */
-    
-    const multerstorages3 = multerS3({
-    s3: s3bucket,
-    bucket: BUCKET_NAME,
-    acl: 'public-read',
-    key: function (req, file, cb) {
-        const ext = file.originalname.split('.').pop();
-        cb(null, `uploads/${file.fieldname}-${Date.now()}.${ext}`);
-    }
-    });
-
-    const upload = multer({ storage: multerstorages3, fileFilter: (req, file, cb) => {
-    const flag = file.mimetype.startsWith('image');
-    cb(null, flag);
-    } });
-
-    upload.single()(req, res, () => {
-        res.send({ message: 'Uploaded!', file : req.file});
-    });
+    res.status(200).send({ message: 'Image uploaded!', urlImage : req.file.location});
 }
+
 
 module.exports = {
     createUser,
@@ -257,5 +245,6 @@ module.exports = {
     deleteUser,
     login,
     googleLogin,
-    uploadImage
+    uploadImage,
+    upload
 }
