@@ -185,6 +185,30 @@ api.post('/login', UserController.login)
  */
 api.post('/googleLogin', UserController.googleLogin)
 
+/**
+ * @swagger
+ * /api/upload:
+ *  post:
+ *      tags:
+ *          - name: image file
+ *      summary: "Logs user into the system using Google Authentication"
+ *      description: Logs user into the system with its Google Email.
+ *      parameters:
+ *          - name: "image file"
+ *            in: "path"
+ *            description: "The file of the image to be uploaded to S3"
+ *            required: true
+ *            type: string 
+ *      responses:
+ *          200:
+ *              description: Image uploaded.
+ *              schema:
+ *                  type: string
+ *          403:
+ *              description: Image not uploaded.
+ *          500:
+ *              description: Error.
+ */
 api.post('/upload', UserController.upload.single('image'), UserController.uploadImage); 
 
 module.exports = api;
